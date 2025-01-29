@@ -92,4 +92,6 @@ async function getPhotographers(){
     }
 }
 
-await getPhotographers();
+(async function(){
+    await getPhotographers();
+})();
