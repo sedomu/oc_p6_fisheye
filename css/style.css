@@ -1,8 +1,27 @@
+/* ############### Imports ##################### */
 @import url("photographer.css");
-@import url("./dev_overlay.css");
 
+/* ############### Variables ##################### */
+:root{
+    --red-darker: #901C1C;
+    --red-lighter: #D3573C;
+    --black-point: #000000;
+    --white-point: #FFFFFF;
+    --medium-gray: #757575;
+}
+
+/* ############### Fonts ##################### */
+@font-face {
+    font-family: "DM Sans", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../assets/fonts/DMSans-VariableFont_opsz,wght.ttf");
+}
+
+/* ############### Global styles ##################### */
 body {
     font-family: "DM Sans", sans-serif;
+    font-weight: 400;
     margin: 0;
 }
 
@@ -16,10 +35,18 @@ header {
 }
 
 h1 {
-    color: #901C1C;
+    color: var(--red-darker);
     margin-right: 100px;
+    font-weight: 400;
+    font-size: 2.25rem;
 }
 
+a {
+    text-decoration: none;
+}
+
+
+/* ############### Styles ##################### */
 .logo {
     height: 50px;
     margin-left: 100px;
@@ -29,7 +56,19 @@ h1 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    margin-top: 100px;
+    margin: 100px 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .photographer_section {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .photographer_section {
+        grid-template-columns: 1fr;
+    }
 }
 
 .photographer_section article {
@@ -41,11 +80,41 @@ h1 {
 }
 
 .photographer_section article h2 {
-    color: #D3573C;
-    font-size: 36px;
+    color: var(--red-lighter);
+    font-size: 2.25rem;
+    font-weight: 400;
+    margin: 0;
 }
 
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.photographer_section .artistHero a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.photographer_section div.artistDetails p{
+    text-align: center;
+    margin: 0;
+}
+
+.photographer_section article p.localisation {
+    color: var(--red-darker);
+    font-size: 0.8rem;
+}
+
+.photographer_section article p.tagline {
+    font-size: 0.625rem;
+}
+
+.photographer_section article p.pricing {
+    color: var(--medium-gray);
+    font-size: 0.6rem;
 }
