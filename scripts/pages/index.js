@@ -17,12 +17,14 @@ function createArtistCard(photographers){
 
     // Creating all elements
     // Structure divs
-    const artist = document.createElement("div");
+    const artist = document.createElement("article");
     const artistHero = document.createElement("div");
+    artistHero.classList.add("artistHero");
     const artistDetails = document.createElement("div");
+    artistDetails.classList.add("artistDetails");
 
     // Photographer's page link
-    const urlAttribute = `profile.html?${photographers.id}`;
+    const urlAttribute = `profile.html?id=${photographers.id}`;
     const link = document.createElement("a");
     link.setAttribute("href", urlAttribute);
 
@@ -34,20 +36,24 @@ function createArtistCard(photographers){
     // Photographer's name
     const name = document.createElement("h2");
     name.innerText = photographers.name;
+    name.classList.add("name");
 
     // Photographer's localisation
     const localisation = `${photographers.city}, ${photographers.country}`;
     const city = document.createElement("p");
     city.innerText = localisation;
+    city.classList.add("localisation");
 
-    // Photographer's anthem
-    const anthem = document.createElement("p");
-    anthem.innerText = photographers.tagline;
+    // Photographer's tagline
+    const tagline = document.createElement("p");
+    tagline.innerText = photographers.tagline;
+    tagline.classList.add("tagline");
 
     // Photographer's pricing
     const pricing = `${photographers.price}€/jour`;
     const price = document.createElement("p");
     price.innerText = pricing;
+    price.classList.add("pricing");
 
     // Assembling elements
     //Photographer's hero section
@@ -57,7 +63,7 @@ function createArtistCard(photographers){
 
     // Photographer's details
     artistDetails.appendChild(city);
-    artistDetails.appendChild(anthem);
+    artistDetails.appendChild(tagline);
     artistDetails.appendChild(price);
 
     // Card
