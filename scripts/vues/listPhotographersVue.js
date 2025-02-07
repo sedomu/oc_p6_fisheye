@@ -28,63 +28,83 @@ class listPhotographersVue{
         // Mapping DOM
         const section = document.querySelector(".photographer_section");
 
+
+        // Generating Photographers' details variables
+        const urlAttribute = `photographer.html?id=${photographers.id}`;
+        const pictureSrc = `./assets/photographers/${photographers.portrait}`;
+        const name = photographers.name;
+        const localisation = `${photographers.city}, ${photographers.country}`;
+        const tagline = photographers.tagline;
+        const pricing = `${photographers.price}€/jour`;
+
+        // Creating artist card's html code
+        const artistCardHtml = `
+                <div class="artistHero">
+                    <a href="${urlAttribute}">
+                        <img src="${pictureSrc}">
+                        <h2 class="name">${name}</h2>
+                    </a>
+                </div>
+                <div class="artistDetails">
+                    <p class="localisation">${localisation}</p>
+                    <p class="tagline">${tagline}</p>
+                    <p class="pricing">${pricing}</p>
+                </div>`;
+
+        // Creating artistCard article element
+        const artistCard = document.createElement("article");
+        artistCard.innerHTML = artistCardHtml
+
+        // Inserting card
+        section.appendChild(artistCard);
+
+        // Just for fun: below the former code with creating each element and appending it in the tree:
         // Creating all elements
         // Structure divs
-        const artist = document.createElement("article");
-        const artistHero = document.createElement("div");
-        artistHero.classList.add("artistHero");
-        const artistDetails = document.createElement("div");
-        artistDetails.classList.add("artistDetails");
+        // const artist = document.createElement("article");
+        // const artistHero = document.createElement("div");
+        // artistHero.classList.add("artistHero");
+        // const artistDetails = document.createElement("div");
+        // artistDetails.classList.add("artistDetails");
 
-        // Photographer's page link
-        const urlAttribute = `profile.html?id=${photographers.id}`;
-        const link = document.createElement("a");
-        link.setAttribute("href", urlAttribute);
+        // const link = document.createElement("a");
+        // link.setAttribute("href", urlAttribute);
 
-        // Photographer's profile pic
-        const pictureSrc = `./assets/photographers/${photographers.portrait}`;
-        const picture = document.createElement("img");
-        picture.setAttribute("src", pictureSrc);
+        // const picture = document.createElement("img");
+        // picture.setAttribute("src", pictureSrc);
 
         // Photographer's name
-        const name = document.createElement("h2");
-        name.innerText = photographers.name;
-        name.classList.add("name");
+        // const name = document.createElement("h2");
+        // name.innerText = photographers.name;
+        // name.classList.add("name");
 
-        // Photographer's localisation
-        const localisation = `${photographers.city}, ${photographers.country}`;
-        const city = document.createElement("p");
-        city.innerText = localisation;
-        city.classList.add("localisation");
+        // const city = document.createElement("p");
+        // city.innerText = localisation;
+        // city.classList.add("localisation");
 
         // Photographer's tagline
-        const tagline = document.createElement("p");
-        tagline.innerText = photographers.tagline;
-        tagline.classList.add("tagline");
+        // const tagline = document.createElement("p");
+        // tagline.innerText = photographers.tagline;
+        // tagline.classList.add("tagline");
 
-        // Photographer's pricing
-        const pricing = `${photographers.price}€/jour`;
-        const price = document.createElement("p");
-        price.innerText = pricing;
-        price.classList.add("pricing");
+        // const price = document.createElement("p");
+        // price.innerText = pricing;
+        // price.classList.add("pricing");
 
         // Assembling elements
         //Photographer's hero section
-        link.appendChild(picture);
-        link.appendChild(name);
-        artistHero.appendChild(link);
+        // link.appendChild(picture);
+        // link.appendChild(name);
+        // artistHero.appendChild(link);
 
         // Photographer's details
-        artistDetails.appendChild(city);
-        artistDetails.appendChild(tagline);
-        artistDetails.appendChild(price);
+        // artistDetails.appendChild(city);
+        // artistDetails.appendChild(tagline);
+        // artistDetails.appendChild(price);
 
         // Card
-        artist.appendChild(artistHero);
-        artist.appendChild(artistDetails);
-
-        // Inserting card
-        section.appendChild(artist);
+        // artist.appendChild(artistHero);
+        // artist.appendChild(artistDetails);
     }
 }
 
