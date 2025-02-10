@@ -1,3 +1,7 @@
+:root{
+    --dark-grey: #525252;
+}
+
 #contact_modal {
     display: none;
 }
@@ -6,12 +10,75 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    overflow: hidden;
+}
+
+.photograph-header h1 {
+    font-size: 4rem;
+    color: var(--red-lighter);
+    margin: 0;
+}
+
+.photograph-header p.location {
+    font-size: 1.5rem;
+    color: var(--red-darker);
+    margin: 0;
+}
+
+.photograph-header p.tagline {
+    font-size: 1.125rem;
+    color: var(--dark-grey);
+    margin: 0;
+}
+
+.contact_photographer {
+    display: flex;
+    justify-content: center;
+}
+
+.contact_button {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: #901C1C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.photograph-header .photographer__profilePic {
+    display: flex;
+    justify-content: center;
+}
+
+.photograph-header .photographer__profilePic--frame {
+    width: 200px;
+    height: 200px;
+    /*object-fit: cover;*/
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.photograph-header .photographer__profilePic img {
+    object-fit: cover;
+    height: 200px;
+    width: 200px;
 }
 
 .photographer-portfolio{
-    margin: 0 100px;
-    display: flex;
-    flex-wrap: wrap;
+    margin: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 350px);
     row-gap: 10px;
     justify-content: space-between;
 }
@@ -23,7 +90,8 @@
     overflow: hidden;
 }
 
-.media-card > img {
+.media-card > img,
+.media-card > video {
     height: 300px;
     width: 350px;
     object-fit: cover;
@@ -47,18 +115,15 @@
     max-width: 250px;
 }
 
-.contact_button {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
+.media-card__like-counter::after {
+    content: url(../assets/icons/heart.svg);
+    display: inline-block;
+    margin: 0 4px;
+    height: 32px;
+    align-content: center;
+    vertical-align: middle;
 }
+
 
 .modal {
     border-radius: 5px;

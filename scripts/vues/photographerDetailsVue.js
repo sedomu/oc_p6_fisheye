@@ -18,8 +18,12 @@ class photographerDetails {
                 <p class="location">${location}</p>
                 <p class="tagline">${tagline}</p>
             </div>
-            <div><button>Contactez-moi</button></div>
-            <div><img src=${profileImg} style="max-width: 100px" alt="Image de profil du photographe"></div>
+            <div class="contact_photographer"><button class="contact_button">Contactez-moi</button></div>
+            <div class="photographer__profilePic">
+                <div class="photographer__profilePic--frame">
+                    <img src=${profileImg} alt="Image de profil du photographe">
+                </div>    
+            </div>
         `
     }
 
@@ -35,30 +39,30 @@ class photographerDetails {
             if (this.media[i].image){
                 mediaLink = `<img alt="${this.media[i].title}" src="./assets/photos/${this.media[i].image}">`
             } else if (this.media[i].video){
-                mediaLink = `<video" src="./assets/photos/${this.media[i].video}">`
+                mediaLink = `<video src="./assets/photos/${this.media[i].video}"></video>`
             } else {
                 console.log("media type not supported");
             }
 
-            console.log(mediaLink);
+            // console.log(mediaLink);
 
             article.innerHTML = `
                 ${mediaLink}
                 <div class="media-card__txt">
                     <p>${this.media[i].title}</p>
-                    <p>${this.media[i].likes} ❤️</p>
+                    <p class="media-card__like-counter">${this.media[i].likes}</p>
                 </div>
             `
 
             photographerPortfolio.appendChild(article);
         }
 
-        console.log(this.media.length);
+        // console.log(this.media.length);
         // console.log(media[0]);
         //
         // for (let i = 0; i < media.length; i++) {
         //     console.log(media[item]);
         // }
-        console.log(`je retourne bien les ${this.media.length} médias du photographe : ${this.media[0].photographerId}`);
+        // console.log(`je retourne bien les ${this.media.length} médias du photographe : ${this.media[0].photographerId}`);
     }
 }
