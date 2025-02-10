@@ -1,4 +1,4 @@
-console.log("Controller.js est correctement chargé!");
+// console.log("Controller.js est correctement chargé!");
 
 class Controller{
     constructor(photographerId){
