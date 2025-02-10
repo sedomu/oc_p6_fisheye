@@ -3,7 +3,7 @@ OpenClassrooms - dév JS react - projet 6 - Front-End-Fisheye
 
 ## showroom
 
-[Visiter le site](https://sedomu.github.io/Front-End-Fisheye/) - déploiement automatique de la branche `main` sur GitHub Pages avec GitHub Actions
+[Visiter le site](https://sedomu.github.io/Front-End-Fisheye/) — déploiement automatique de la branche `main` sur GitHub Pages avec GitHub Actions
 
 ## instructions
 
