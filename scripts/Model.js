@@ -20,5 +20,10 @@ class Model{
         const data = await this.getData();
         return data.photographers;
     }
+
+    async getMedia(){
+        const data = await this.getData();
+        return data.media;
+    }
 }
 

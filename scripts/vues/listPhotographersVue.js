@@ -5,7 +5,7 @@ class listPhotographersVue{
      *
      * @return {Promise<void>} A promise that resolves when the photographers are processed and artist cards are created.
      */
-    async displayPhotographers(photographers){
+     displayPhotographers(photographers){
         for (let i = 0; i < photographers.length; i++) {
             this.createArtistCard(photographers[i]);
         }
