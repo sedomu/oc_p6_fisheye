@@ -4,7 +4,7 @@ class photographerDetails {
         this.media = media; //tableau contenant plusieurs objets représentant les media du photographe
     }
 
-    displayPhotographerDetails(photographer) {
+    displayPhotographerDetails() {
         // preparing data
         const name = this.photographer[0].name;
         const location = this.photographer[0].city + ", " + this.photographer[0].country;
