@@ -11,22 +11,20 @@ class photographerDetails {
         const tagline = this.photographer[0].tagline;
         const profileImg = "./assets/photographers/" + this.photographer[0].portrait;
 
-        // writing html
-        const html = `
+        // creating element
+        document.querySelector(".photograph-header").innerHTML = `
             <div>
                 <h1 class="name">${name}</h1>
                 <p class="location">${location}</p>
                 <p class="tagline">${tagline}</p>
             </div>
             <div><button>Contactez-moi</button></div>
-            <div><img src=${profileImg} style="max-width: 100px"></div>
+            <div><img src=${profileImg} style="max-width: 100px" alt="Image de profil du photographe"></div>
         `
-        // creating element
-        document.querySelector(".photograph-header").innerHTML = html;
     }
 
     displayPhotographerMedia(){
-        const photographerMain = document.querySelector("#main");
+        const photographerPortfolio = document.querySelector(".photographer-portfolio");
 
         for (let i = 0; i < this.media.length; i++) {
             const article = document.createElement("article");
@@ -37,7 +35,7 @@ class photographerDetails {
             if (this.media[i].image){
                 mediaLink = `<img alt="${this.media[i].title}" src="./assets/photos/${this.media[i].image}">`
             } else if (this.media[i].video){
-                mediaLink = `<video alt="${this.media[i].title}" src="./assets/photos/${this.media[i].video}">`
+                mediaLink = `<video" src="./assets/photos/${this.media[i].video}">`
             } else {
                 console.log("media type not supported");
             }
@@ -52,7 +50,7 @@ class photographerDetails {
                 </div>
             `
 
-            photographerMain.appendChild(article);
+            photographerPortfolio.appendChild(article);
         }
 
         console.log(this.media.length);

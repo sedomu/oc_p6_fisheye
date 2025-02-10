@@ -10,7 +10,7 @@ class Controller{
         const photographers = await model.getPhotographers();
 
         const vue = new listPhotographersVue();
-        vue.displayPhotographers(photographers);
+        await vue.displayPhotographers(photographers);
     }
 
     async displayPhotographerProfile(){

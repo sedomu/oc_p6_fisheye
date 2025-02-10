@@ -8,8 +8,15 @@
     margin: 0 100px;
 }
 
+.photographer-portfolio{
+    margin: 0 100px;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    justify-content: space-between;
+}
+
 .media-card{
-    /*background-color: #e32c2c;*/
     width: 350px;
     height: 350px;
     object-fit: contain;
@@ -34,6 +41,10 @@
 
 .media-card__txt > p {
     margin: 0;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
 }
 
 .contact_button {
