@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <title>Fisheye</title>
-    <script src="scripts/Model.js"></script>
-    <script src="scripts/vues/listPhotographersVue.js"></script>
-    <script src="scripts/Controller.js"></script>
-
-
-  </head>
-  <body>
-    <header>
-        <a href="./index.html"><img src="assets/images/logo.png" class="logo" alt="fisheye logo"/></a>
-        <h1>Nos photographes</h1>
-    </header>
-    <main id="main">
-        <div class="photographer_section"></div>
-    </main>
-  </body>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const controller = new Controller();
-      controller.displayPhotographersPage();
-    });
-  </script>
+    <head>
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <meta charset="utf-8">
+        <link rel="icon" type="image/png" href="assets/favicon.png">
+        <title>Fisheye</title>
+        <script src="scripts/Model.js"></script>
+        <script src="scripts/vues/listPhotographersVue.js"></script>
+        <script src="scripts/Controller.js"></script>
+    </head>
+    <body>
+        <header>
+            <a href="./index.html"><img src="assets/images/logo.png" class="logo" alt="fisheye logo"/></a>
+            <h1>Nos photographes</h1>
+        </header>
+        <main id="main">
+            <div class="photographer_section"></div>
+        </main>
+    </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const controller = new Controller();
+            controller.displayPhotographersPage();
+        });
+    </script>
 </html>

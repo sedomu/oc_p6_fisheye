@@ -10,33 +10,37 @@
         <script src="scripts/vues/photographerDetailsVue.js" defer></script>
         <script src="scripts/Controller.js" defer></script>
     </head>
-  <body>
-    <header>
-      <a href="./index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/></a>
-    </header>
+    <body>
+        <header>
+          <a href="./index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/></a>
+        </header>
     <main id="main">
-      <div class="photograph-header">
-<!--        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>-->
-      </div>
-        <div class="photographer-portfolio">
-
+        <div class="photograph-header">
+        <!--        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>-->
         </div>
+        <div class="photographer-portfolio"></div>
     </main>
     <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-<!--          <img src="assets/icons/close.svg" onclick="closeModal()" alt="close"/>-->
-        </header>
-				<form>
-					<div>
-						<label for="test">Prénom</label>
-						<input id="test"/>
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+        <div class="modal">
+            <header>
+                <h2>Contactez-moi</h2>
+                <img src="assets/icons/close.svg" onclick="closeModal()" alt="close"/>
+            </header>
+                <form>
+                    <div>
+                        <label for="firstname">Prénom</label>
+                        <input type="text" id="firstname"/>
+                        <label for="lastname">Nom</label>
+                        <input type="text" id="lastname"/>
+                        <label for="email">Email</label>
+                        <input id="email" type="email"/>
+                        <label for="message">Votre message</label>
+                        <textarea id="message"></textarea>
+                    </div>
+                    <button class="contact_button">Envoyer</button>
+                </form>
+        </div>
+    </div>
         <script>
             document.addEventListener("DOMContentLoaded", () => {
                 // using search parameter to get the photographer's id
@@ -49,5 +53,5 @@
                 controller.displayPhotographerProfile();
             });
         </script>
-  </body>
+    </body>
 </html>
