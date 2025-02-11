@@ -25,5 +25,15 @@ class Model{
         const data = await this.getData();
         return data.media;
     }
+
+    filterByPhotographer(data, photographerId){
+        let array = [];
+        for (let i = 0; i < data.length; i++){
+            if (data[i].id === parseInt(photographerId) || data[i].photographerId === parseInt(photographerId)){
+                array.push(data[i]);
+            }
+        }
+        return array;
+    }
 }
 

@@ -19,14 +19,27 @@ class Controller{
         const allMedia = await model.getMedia();
 
         // filter arrays
-       const photographer = allPhotographers.filter(photographer => photographer.id == this.photographerId);
-       const media = allMedia.filter(photographer => photographer.photographerId == this.photographerId);
+        const photographer = model.filterByPhotographer(allPhotographers, this.photographerId);
+        const media = model.filterByPhotographer(allMedia, this.photographerId)
 
-       // vue
+       // vue for photographer's details
         const vue = new photographerDetails(photographer, media);
         vue.displayPhotographerDetails();
-        vue.displayPhotographerMedia()
+
+        // vue for photographer's medias via a Factory Pattern
+        this.displayPhotographerMediaFactory(media);
+    }
+
+    displayPhotographerMediaFactory(media){
+        const vue = new photographerDetails();
+        for (let item of media){
+            if (item.image !== undefined){
+                vue.displayPhoto(item);
+            } else if (item.video !== undefined){
+                vue.displayVideo(item);
+            } else {
+                throw "Unknown data format for item.id";
+            }
+        }
     }
 }
-
-
