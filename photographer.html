@@ -6,9 +6,9 @@
         <link rel="icon" type="image/png" href="assets/favicon.png">
         <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
         <title>Fisheye - photographe </title>
-        <script src="scripts/Model.js" defer></script>
-        <script src="scripts/vues/photographerDetailsVue.js" defer></script>
-        <script src="scripts/Controller.js" defer></script>
+        <script src="scripts/Model.js" ></script>
+        <script src="scripts/vues/photographerDetailsVue.js" ></script>
+        <script src="scripts/Controller.js"></script>
     </head>
     <body>
         <header>
@@ -42,16 +42,9 @@
         </div>
     </div>
         <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                // using search parameter to get the photographer's id
-                const url = window.location.search;
-                const urlParams = new URLSearchParams(url);
-                const photographerId = urlParams.get('id');
-
-                // launching script to construct the page
-                const controller = new Controller(photographerId);
-                controller.displayPhotographerProfile();
-            });
+            // launching script to construct the page
+            const controller = new Controller();
+            controller.displayPhotographerProfile();
         </script>
     </body>
 </html>

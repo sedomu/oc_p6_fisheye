@@ -1,10 +1,6 @@
 // console.log("Controller.js est correctement chargé!");
 
 class Controller{
-    constructor(photographerId){
-        this.photographerId = photographerId;
-    }
-
     async displayPhotographersPage(){
         const model = new Model();
         const photographers = await model.getPhotographers();
@@ -14,13 +10,18 @@ class Controller{
     }
 
     async displayPhotographerProfile(){
+        // using search parameter to get the photographer's id
+        const url = window.location.search;
+        const urlParams = new URLSearchParams(url);
+        const photographerId = urlParams.get('id');
+
         const model = new Model();
         const allPhotographers = await model.getPhotographers();
         const allMedia = await model.getMedia();
 
         // filter arrays
-        const photographer = model.filterByPhotographer(allPhotographers, this.photographerId);
-        const media = model.filterByPhotographer(allMedia, this.photographerId)
+        const photographer = model.filterByPhotographer(allPhotographers, photographerId);
+        const media = model.filterByPhotographer(allMedia, photographerId)
 
        // vue for photographer's details
         const vue = new photographerDetails(photographer, media);
