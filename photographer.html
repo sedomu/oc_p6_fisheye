@@ -14,18 +14,18 @@
         <header>
           <a href="./index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/></a>
         </header>
-    <main id="main">
-        <div class="photograph-header">
-        <!--        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>-->
-        </div>
-        <div class="photographer-portfolio"></div>
-    </main>
-    <div id="contact_modal">
-        <div class="modal">
-            <header>
-                <h2>Contactez-moi</h2>
-                <img src="assets/icons/close.svg" onclick="closeModal()" alt="close"/>
-            </header>
+        <main id="main">
+            <div class="photograph-header">
+            <!--        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>-->
+            </div>
+            <div class="photographer-portfolio"></div>
+        </main>
+        <div id="contact_modal">
+            <div class="modal">
+                <header>
+                    <h2>Contactez-moi</h2>
+                    <img src="assets/icons/close.svg" onclick="closeModal()" alt="close"/>
+                </header>
                 <form>
                     <div>
                         <label for="firstname">Prénom</label>
@@ -39,12 +39,7 @@
                     </div>
                     <button class="contact_button">Envoyer</button>
                 </form>
+            </div>
         </div>
-    </div>
-        <script>
-            // launching script to construct the page
-            const controller = new Controller();
-            controller.displayPhotographerProfile();
-        </script>
     </body>
 </html>

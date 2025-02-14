@@ -1,5 +1,3 @@
-// console.log("Controller.js est correctement chargé!");
-
 class Controller{
     async displayPhotographersPage(){
         const model = new Model();
@@ -43,4 +41,17 @@ class Controller{
             }
         }
     }
+
+    router(){
+        const currentPage = window.location.pathname;
+
+        if (currentPage.endsWith("index.html")) {
+            this.displayPhotographersPage();
+        } else if (currentPage.endsWith(".html")) {
+            this.displayPhotographerProfile();
+        }
+    }
 }
+
+const controller = new Controller();
+controller.router();
