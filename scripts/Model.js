@@ -26,14 +26,42 @@ class Model{
         return data.media;
     }
 
-    filterByPhotographer(data, photographerId){
-        let array = [];
+    async getPhotographerProfileHeader(photographerId){
+        const data = await this.getPhotographers();
+        let photographerInfo = {};
+
         for (let i = 0; i < data.length; i++){
-            if (data[i].id === parseInt(photographerId) || data[i].photographerId === parseInt(photographerId)){
-                array.push(data[i]);
+            if (data[i].id === parseInt(photographerId)){
+                photographerInfo = data[i];
             }
         }
-        return array;
+
+        return photographerInfo;
     }
+
+    async getPhotographerProfileContent(photographerId){
+        const data = await this.getMedia();
+        let mediaHtmlTags = [];
+
+        for (let i = 0; i < data.length; i++){
+            if (data[i].photographerId === parseInt(photographerId)){
+                mediaHtmlTags.push(data[i]);
+            }
+        }
+
+        return mediaHtmlTags;
+    }
+
+
+    //
+    // filterByPhotographer(data, photographerId){
+    //     let array = [];
+    //     for (let i = 0; i < data.length; i++){
+    //         if (data[i].id === parseInt(photographerId) || data[i].photographerId === parseInt(photographerId)){
+    //             array.push(data[i]);
+    //         }
+    //     }
+    //     return array;
+    // }
 }
 
