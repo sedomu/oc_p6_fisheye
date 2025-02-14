@@ -17,6 +17,24 @@ class Controller{
         }
     }
 
+    initiateLike() {
+        //likes management
+        const likeButtons = document.querySelectorAll('.media-card__like-counter');
+
+        for (const likeButton of likeButtons){
+            likeButton.addEventListener("click", (e) => {
+                console.log(e.target.attributes.getNamedItem("updated"));
+                if (e.target.attributes.getNamedItem("updated").value === "true") {
+                    e.target.setAttribute("updated", "false");
+                    e.target.innerText = (parseInt(e.target.innerText)) - 1;
+                } else {
+                    e.target.setAttribute("updated", "true");
+                    e.target.innerText = (parseInt(e.target.innerText)) + 1;
+                }
+            })
+        }
+    }
+
     async displayPhotographerProfile(){
         // using search parameter to get the photographer's id
         const url = window.location.search;
@@ -40,6 +58,10 @@ class Controller{
         const vue = new photographerDetails(header, medias);
         vue.displayPhotographerDetails();
         vue.displayPhotographerContent();
+
+        //like
+        this.initiateLike();
+
 
 
     }

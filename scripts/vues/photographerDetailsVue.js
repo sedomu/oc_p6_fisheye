@@ -35,7 +35,7 @@ class photographerDetails {
             ${media.mediaHtmlCode}
             <div class="media-card__txt">
                 <p>${media.title}</p>
-                <p class="media-card__like-counter">${media.likes}</p>
+                <p class="media-card__like-counter" updated="false">${media.likes}</p>
             </div>`
         photographerPortfolio.appendChild(article);
     }
