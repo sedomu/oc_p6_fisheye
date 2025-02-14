@@ -41,6 +41,11 @@ class photographerDetails {
     }
 
     displayPhotographerContent() {
+        //initialising content (after sorting)
+        const photographerPortfolio = document.querySelector(".photographer-portfolio");
+        photographerPortfolio.innerHTML = ``
+
+        //creating elements
         for (let i = 0; i < this.medias.length; i++) {
             this.displayPhotographerMedia(this.medias[i]);
         }

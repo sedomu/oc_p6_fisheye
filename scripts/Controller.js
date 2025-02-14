@@ -35,7 +35,7 @@ class Controller{
         }
     }
 
-    async displayPhotographerProfile(){
+    async displayPhotographerProfile(sortMethod){
         // using search parameter to get the photographer's id
         const url = window.location.search;
         const urlParams = new URLSearchParams(url);
@@ -43,17 +43,13 @@ class Controller{
 
         const model = new Model();
         const header = await model.getPhotographerProfileHeader(photographerId); // return data as an object send it to vue
-        const medias = await model.getPhotographerProfileContent(photographerId); // return array of html tags, send it to view
-
-        console.log(header);
-        console.log(medias);
+        const medias = await model.getPhotographerProfileContent(photographerId, sortMethod); // return array of html tags, send it to view
 
         for (let i = 0; i < medias.length; i++){
             medias[i].mediaHtmlCode = this.displayPhotographerMediaFactory(medias[i]);
         }
 
         console.log(medias);
-
     //     Et ici, on construit la page
         const vue = new photographerDetails(header, medias);
         vue.displayPhotographerDetails();
@@ -62,7 +58,9 @@ class Controller{
         //like
         this.initiateLike();
 
-
+        //sort - MAIS JE PENSE QU'IL SE LANCE LUI MEME 1-2-4-8-etc.
+        const mediasSorter = new PhotographerMediasSorter();
+        mediasSorter.sortMedias();
 
     }
        //  const model = new Model();
@@ -99,7 +97,7 @@ class Controller{
 
         if (currentPage.endsWith("index.html")) {
             this.displayPhotographersPage();
-        } else if (currentPage.endsWith(".html")) {
+        } else if (currentPage.endsWith("photographer.html")) {
             this.displayPhotographerProfile();
         }
     }

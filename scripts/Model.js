@@ -21,9 +21,21 @@ class Model{
         return data.photographers;
     }
 
-    async getMedia(){
+    async getMedias(sortMethod){
         const data = await this.getData();
-        return data.media;
+
+        console.log(sortMethod);
+
+        if (sortMethod === "popularity") {
+            return data.media.sort((a, b) => a.likes - b.likes);
+        } else if (sortMethod === "date"){
+            return data.media.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+        } else if (sortMethod === "title"){
+            return data.media.sort((a, b) => a.title - b.title); //ne fonctionne pas localecompare à utiliser
+        } else {
+            return data.media;
+        }
+
     }
 
     async getPhotographerProfileHeader(photographerId){
@@ -39,8 +51,8 @@ class Model{
         return photographerInfo;
     }
 
-    async getPhotographerProfileContent(photographerId){
-        const data = await this.getMedia();
+    async getPhotographerProfileContent(photographerId, sortMethod){
+        const data = await this.getMedias(sortMethod);
         let mediaHtmlTags = [];
 
         for (let i = 0; i < data.length; i++){
