@@ -1,6 +1,6 @@
 class Controller {
     constructor() {
-        this.mediasSorter = new PhotographerMediasSorter(this); // Passe l'instance actuelle du Controller
+        this.mediasSorter = null; // Ne pas instancier directement
     }
 
     async displayPhotographersPage() {
@@ -11,7 +11,10 @@ class Controller {
     }
 
     initMediasSorter() {
-        this.mediasSorter.sortMedias(); // Utilise toujours la même instance
+        if (!this.mediasSorter) {
+            this.mediasSorter = new PhotographerMediasSorter(this);
+        }
+        this.mediasSorter.sortMedias();
     }
 
     async displayPhotographerProfile(sortMethod, callback) {
