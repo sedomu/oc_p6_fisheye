@@ -6,24 +6,6 @@ class Controller{
         await vue.displayPhotographers(photographers);
     }
 
-    initiateLike() {
-        //likes management
-        const likeButtons = document.querySelectorAll('.media-card__like-counter');
-
-        for (const likeButton of likeButtons){
-            likeButton.addEventListener("click", (e) => {
-                console.log(e.target.attributes.getNamedItem("updated"));
-                if (e.target.attributes.getNamedItem("updated").value === "true") {
-                    e.target.setAttribute("updated", "false");
-                    e.target.innerText = (parseInt(e.target.innerText)) - 1;
-                } else {
-                    e.target.setAttribute("updated", "true");
-                    e.target.innerText = (parseInt(e.target.innerText)) + 1;
-                }
-            })
-        }
-    }
-
     async displayPhotographerProfile(sortMethod){
         const photographerId = Services.getParam("id");
 
@@ -38,9 +20,7 @@ class Controller{
 
         vue.displayPhotographerDetails();
         vue.displayPhotographerContent();
-
-        //like
-        this.initiateLike();
+        vue.initiateLike();
 
         //sort - MAIS JE PENSE QU'IL SE LANCE LUI MEME 1-2-4-8-etc.
         const mediasSorter = new PhotographerMediasSorter();

@@ -37,6 +37,24 @@ class photographerDetails {
         }
     }
 
+    initiateLike() {
+        //likes management
+        const likeButtons = document.querySelectorAll('.media-card__like-counter');
+
+        for (const likeButton of likeButtons){
+            likeButton.addEventListener("click", (e) => {
+                console.log(e.target.attributes.getNamedItem("updated"));
+                if (e.target.attributes.getNamedItem("updated").value === "true") {
+                    e.target.setAttribute("updated", "false");
+                    e.target.innerText = (parseInt(e.target.innerText)) - 1;
+                } else {
+                    e.target.setAttribute("updated", "true");
+                    e.target.innerText = (parseInt(e.target.innerText)) + 1;
+                }
+            })
+        }
+    }
+
     displayPhotographerMedia(media){
         const photographerPortfolio = document.querySelector(".photographer-portfolio");
         const article = document.createElement("article");
