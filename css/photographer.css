@@ -112,12 +112,16 @@
 }
 
 .media-card__like-counter::after {
-    content: url(../assets/icons/heart.svg);
+    content: url(../assets/icons/heart_empty.svg);
     display: inline-block;
     margin: 0 4px;
     height: 32px;
     align-content: center;
     vertical-align: middle;
+}
+
+.media-card__like-counter[updated="true"]::after {
+    content: url(../assets/icons/heart_full.svg);
 }
 
 
