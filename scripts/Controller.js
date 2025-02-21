@@ -1,20 +1,28 @@
-class Controller{
-    async displayPhotographersPage(){
+class Controller {
+    constructor() {
+        this.mediasSorter = new PhotographerMediasSorter(this); // Passe l'instance actuelle du Controller
+    }
+
+    async displayPhotographersPage() {
         const model = new Model();
         const photographers = await model.getPhotographers();
         const vue = new listPhotographersVue();
         await vue.displayPhotographers(photographers);
     }
 
-    async displayPhotographerProfile(sortMethod){
+    initMediasSorter() {
+        this.mediasSorter.sortMedias(); // Utilise toujours la même instance
+    }
+
+    async displayPhotographerProfile(sortMethod, callback) {
         const photographerId = Services.getParam("id");
 
         const model = new Model();
-        const header = await model.getPhotographerProfileHeader(photographerId); // return data as an object send it to vue
-        const medias = await model.getPhotographerProfileContent(photographerId, sortMethod); // return array of html tags, send it to view
+        const header = await model.getPhotographerProfileHeader(photographerId);
+        const medias = await model.getPhotographerProfileContent(photographerId, sortMethod);
 
         const vue = new photographerDetails(header, medias);
-        for (let i = 0; i < medias.length; i++){
+        for (let i = 0; i < medias.length; i++) {
             medias[i].mediaHtmlCode = vue.displayPhotographerMediaFactory(medias[i]);
         }
 
@@ -22,9 +30,9 @@ class Controller{
         vue.displayPhotographerContent();
         vue.initiateLike();
 
-        //sort - MAIS JE PENSE QU'IL SE LANCE LUI MEME 1-2-4-8-etc.
-        const mediasSorter = new PhotographerMediasSorter();
-        mediasSorter.sortMedias();
-
+        // Exécuter le callback si défini
+        if (typeof callback === "function") {
+            callback();
+        }
     }
 }
