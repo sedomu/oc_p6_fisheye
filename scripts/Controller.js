@@ -6,16 +6,6 @@ class Controller{
         await vue.displayPhotographers(photographers);
     }
 
-    displayPhotographerMediaFactory(media){
-        if (media.image !== undefined){
-            return `<img alt="${media.title}" src="./assets/photos/${media.image}">`;
-        } else if (media.video !== undefined) {
-            return `<video src="./assets/photos/${media.video}"></video>`;
-        } else {
-            throw new Error('Unknown media type');
-        }
-    }
-
     initiateLike() {
         //likes management
         const likeButtons = document.querySelectorAll('.media-card__like-counter');
@@ -39,17 +29,13 @@ class Controller{
 
         const model = new Model();
         const header = await model.getPhotographerProfileHeader(photographerId); // return data as an object send it to vue
-
-        console.log(header)
         const medias = await model.getPhotographerProfileContent(photographerId, sortMethod); // return array of html tags, send it to view
 
+        const vue = new photographerDetails(header, medias);
         for (let i = 0; i < medias.length; i++){
-            medias[i].mediaHtmlCode = this.displayPhotographerMediaFactory(medias[i]);
+            medias[i].mediaHtmlCode = vue.displayPhotographerMediaFactory(medias[i]);
         }
 
-        console.log(medias);
-    //     Et ici, on construit la page
-        const vue = new photographerDetails(header, medias);
         vue.displayPhotographerDetails();
         vue.displayPhotographerContent();
 

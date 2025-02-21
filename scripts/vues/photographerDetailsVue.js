@@ -27,6 +27,16 @@ class photographerDetails {
         `
     }
 
+    displayPhotographerMediaFactory(media){
+        if (media.image !== undefined){
+            return `<img alt="${media.title}" src="./assets/photos/${media.image}">`;
+        } else if (media.video !== undefined) {
+            return `<video src="./assets/photos/${media.video}"></video>`;
+        } else {
+            throw new Error('Unknown media type');
+        }
+    }
+
     displayPhotographerMedia(media){
         const photographerPortfolio = document.querySelector(".photographer-portfolio");
         const article = document.createElement("article");
