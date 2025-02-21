@@ -1,45 +1,38 @@
-// console.log("Controller.js est correctement chargé!");
-
-class Controller{
-    constructor(photographerId){
-        this.photographerId = photographerId;
+class Controller {
+    constructor() {
+        this.mediasSorter = new PhotographerMediasSorter(this); // Passe l'instance actuelle du Controller
     }
 
-    async displayPhotographersPage(){
+    async displayPhotographersPage() {
         const model = new Model();
         const photographers = await model.getPhotographers();
-
         const vue = new listPhotographersVue();
         await vue.displayPhotographers(photographers);
     }
 
-    async displayPhotographerProfile(){
-        const model = new Model();
-        const allPhotographers = await model.getPhotographers();
-        const allMedia = await model.getMedia();
-
-        // filter arrays
-        const photographer = model.filterByPhotographer(allPhotographers, this.photographerId);
-        const media = model.filterByPhotographer(allMedia, this.photographerId)
-
-       // vue for photographer's details
-        const vue = new photographerDetails(photographer, media);
-        vue.displayPhotographerDetails();
-
-        // vue for photographer's medias via a Factory Pattern
-        this.displayPhotographerMediaFactory(media);
+    initMediasSorter() {
+        this.mediasSorter.sortMedias(); // Utilise toujours la même instance
     }
 
-    displayPhotographerMediaFactory(media){
-        const vue = new photographerDetails();
-        for (let item of media){
-            if (item.image !== undefined){
-                vue.displayPhoto(item);
-            } else if (item.video !== undefined){
-                vue.displayVideo(item);
-            } else {
-                throw "Unknown data format for item.id";
-            }
+    async displayPhotographerProfile(sortMethod, callback) {
+        const photographerId = Services.getParam("id");
+
+        const model = new Model();
+        const header = await model.getPhotographerProfileHeader(photographerId);
+        const medias = await model.getPhotographerProfileContent(photographerId, sortMethod);
+
+        const vue = new photographerDetails(header, medias);
+        for (let i = 0; i < medias.length; i++) {
+            medias[i].mediaHtmlCode = vue.displayPhotographerMediaFactory(medias[i]);
+        }
+
+        vue.displayPhotographerDetails();
+        vue.displayPhotographerContent();
+        vue.initiateLike();
+
+        // Exécuter le callback si défini
+        if (typeof callback === "function") {
+            callback();
         }
     }
 }

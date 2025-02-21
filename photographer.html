@@ -6,26 +6,38 @@
         <link rel="icon" type="image/png" href="assets/favicon.png">
         <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
         <title>Fisheye - photographe </title>
-        <script src="scripts/Model.js" defer></script>
-        <script src="scripts/vues/photographerDetailsVue.js" defer></script>
-        <script src="scripts/Controller.js" defer></script>
+        <script src="scripts/Model.js" ></script>
+        <script src="scripts/vues/photographerDetailsVue.js" ></script>
+        <script src="scripts/Controller.js"></script>
+        <script src="scripts/components/photographerMediasSorterComponent.js"></script>
+        <script src="scripts/Services.js"></script>
+        <script src="scripts/main.js"></script>
     </head>
     <body>
         <header>
           <a href="./index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/></a>
         </header>
-    <main id="main">
-        <div class="photograph-header">
-        <!--        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>-->
-        </div>
-        <div class="photographer-portfolio"></div>
-    </main>
-    <div id="contact_modal">
-        <div class="modal">
-            <header>
-                <h2>Contactez-moi</h2>
-                <img src="assets/icons/close.svg" onclick="closeModal()" alt="close"/>
-            </header>
+        <main id="main">
+            <div class="photograph-header">
+            <!--        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>-->
+            </div>
+            <div>
+                <label for="mediasSorter">Trier par</label>
+                <select id="mediasSorter">
+                    <option value="default">défaut</option>
+                    <option value="popularity">Popularité</option>
+                    <option value="date">Date</option>
+                    <option value="title">Titre</option>
+                </select>
+            </div>
+            <div class="photographer-portfolio"></div>
+        </main>
+        <div id="contact_modal">
+            <div class="modal">
+                <header>
+                    <h2>Contactez-moi</h2>
+                    <img src="assets/icons/close.svg" onclick="closeModal()" alt="close"/>
+                </header>
                 <form>
                     <div>
                         <label for="firstname">Prénom</label>
@@ -39,19 +51,7 @@
                     </div>
                     <button class="contact_button">Envoyer</button>
                 </form>
+            </div>
         </div>
-    </div>
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                // using search parameter to get the photographer's id
-                const url = window.location.search;
-                const urlParams = new URLSearchParams(url);
-                const photographerId = urlParams.get('id');
-
-                // launching script to construct the page
-                const controller = new Controller(photographerId);
-                controller.displayPhotographerProfile();
-            });
-        </script>
     </body>
 </html>
