@@ -1,11 +1,18 @@
-class listPhotographersVue{
+/**
+ * Handles the display of photographers on the homepage.
+ *
+ * @class listPhotographersVue
+ * @method displayPhotographers - Processes and renders photographer data as artist cards.
+ * @method createArtistCard - Creates and appends an artist card to the DOM.
+ */
+class listPhotographersVue {
     /**
-     * Retrieves a list of photographers, processes the data,
-     * and creates artist cards for each photographer.
+     * Displays a list of photographers by creating and appending artist cards to the DOM.
      *
-     * @return {Promise<void>} A promise that resolves when the photographers are processed and artist cards are created.
+     * @param {Array<Object>} photographers - An array of photographer objects.
+     * @returns {void}
      */
-     displayPhotographers(photographers){
+    displayPhotographers(photographers) {
         for (let i = 0; i < photographers.length; i++) {
             this.createArtistCard(photographers[i]);
         }
@@ -22,14 +29,13 @@ class listPhotographersVue{
      * @param {string} photographers.country - The country where the photographer is located.
      * @param {string} photographers.tagline - The photographer's tagline or description.
      * @param {number} photographers.price - The photographer's daily pricing in euros.
-     * @return {void} This function does not return a value.
+     * @returns {void}
      */
-    createArtistCard(photographers){
+    createArtistCard(photographers) {
         // Mapping DOM
         const section = document.querySelector(".photographer_section");
 
-
-        // Generating Photographers' details variables
+        // Generating photographer details
         const urlAttribute = `photographer.html?id=${photographers.id}`;
         const pictureSrc = `./assets/photographers/${photographers.portrait}`;
         const name = photographers.name;
@@ -37,76 +43,25 @@ class listPhotographersVue{
         const tagline = photographers.tagline;
         const pricing = `${photographers.price}€/jour`;
 
-        // Creating artist card's html code
+        // Creating artist card HTML
         const artistCardHtml = `
-                <div class="artistHero">
-                    <a href="${urlAttribute}">
-                        <img src="${pictureSrc}">
-                        <h2 class="name">${name}</h2>
-                    </a>
-                </div>
-                <div class="artistDetails">
-                    <p class="localisation">${localisation}</p>
-                    <p class="tagline">${tagline}</p>
-                    <p class="pricing">${pricing}</p>
-                </div>`;
+            <div class="artistHero">
+                <a href="${urlAttribute}">
+                    <img src="${pictureSrc}" alt="Portrait de ${name}">
+                    <h2 class="name">${name}</h2>
+                </a>
+            </div>
+            <div class="artistDetails">
+                <p class="localisation">${localisation}</p>
+                <p class="tagline">${tagline}</p>
+                <p class="pricing">${pricing}</p>
+            </div>`;
 
-        // Creating artistCard article element
+        // Creating artist card element
         const artistCard = document.createElement("article");
-        artistCard.innerHTML = artistCardHtml
+        artistCard.innerHTML = artistCardHtml;
 
-        // Inserting card
+        // Inserting card into the section
         section.appendChild(artistCard);
-
-        // Just for fun: below the former code with creating each element and appending it in the tree:
-        // Creating all elements
-        // Structure divs
-        // const artist = document.createElement("article");
-        // const artistHero = document.createElement("div");
-        // artistHero.classList.add("artistHero");
-        // const artistDetails = document.createElement("div");
-        // artistDetails.classList.add("artistDetails");
-
-        // const link = document.createElement("a");
-        // link.setAttribute("href", urlAttribute);
-
-        // const picture = document.createElement("img");
-        // picture.setAttribute("src", pictureSrc);
-
-        // Photographer's name
-        // const name = document.createElement("h2");
-        // name.innerText = photographers.name;
-        // name.classList.add("name");
-
-        // const city = document.createElement("p");
-        // city.innerText = localisation;
-        // city.classList.add("localisation");
-
-        // Photographer's tagline
-        // const tagline = document.createElement("p");
-        // tagline.innerText = photographers.tagline;
-        // tagline.classList.add("tagline");
-
-        // const price = document.createElement("p");
-        // price.innerText = pricing;
-        // price.classList.add("pricing");
-
-        // Assembling elements
-        //Photographer's hero section
-        // link.appendChild(picture);
-        // link.appendChild(name);
-        // artistHero.appendChild(link);
-
-        // Photographer's details
-        // artistDetails.appendChild(city);
-        // artistDetails.appendChild(tagline);
-        // artistDetails.appendChild(price);
-
-        // Card
-        // artist.appendChild(artistHero);
-        // artist.appendChild(artistDetails);
     }
 }
-
-
-
