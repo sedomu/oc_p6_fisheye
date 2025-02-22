@@ -1,11 +1,18 @@
-class listPhotographersVue{
+/**
+ * Handles the display of photographers on the homepage.
+ *
+ * @class listPhotographersVue
+ * @method displayPhotographers - Processes and renders photographer data as artist cards.
+ * @method createArtistCard - Creates and appends an artist card to the DOM.
+ */
+class listPhotographersVue {
     /**
-     * Retrieves a list of photographers, processes the data,
-     * and creates artist cards for each photographer.
+     * Displays a list of photographers by creating and appending artist cards to the DOM.
      *
-     * @return {Promise<void>} A promise that resolves when the photographers are processed and artist cards are created.
+     * @param {Array<Object>} photographers - An array of photographer objects.
+     * @returns {void}
      */
-     displayPhotographers(photographers){
+    displayPhotographers(photographers) {
         for (let i = 0; i < photographers.length; i++) {
             this.createArtistCard(photographers[i]);
         }
@@ -22,14 +29,13 @@ class listPhotographersVue{
      * @param {string} photographers.country - The country where the photographer is located.
      * @param {string} photographers.tagline - The photographer's tagline or description.
      * @param {number} photographers.price - The photographer's daily pricing in euros.
-     * @return {void} This function does not return a value.
+     * @returns {void}
      */
-    createArtistCard(photographers){
+    createArtistCard(photographers) {
         // Mapping DOM
         const section = document.querySelector(".photographer_section");
 
-
-        // Generating Photographers' details variables
+        // Generating photographer details
         const urlAttribute = `photographer.html?id=${photographers.id}`;
         const pictureSrc = `./assets/photographers/${photographers.portrait}`;
         const name = photographers.name;
@@ -37,28 +43,25 @@ class listPhotographersVue{
         const tagline = photographers.tagline;
         const pricing = `${photographers.price}€/jour`;
 
-        // Creating artist card's html code
+        // Creating artist card HTML
         const artistCardHtml = `
-                <div class="artistHero">
-                    <a href="${urlAttribute}">
-                        <img src="${pictureSrc}">
-                        <h2 class="name">${name}</h2>
-                    </a>
-                </div>
-                <div class="artistDetails">
-                    <p class="localisation">${localisation}</p>
-                    <p class="tagline">${tagline}</p>
-                    <p class="pricing">${pricing}</p>
-                </div>`;
+            <div class="artistHero">
+                <a href="${urlAttribute}">
+                    <img src="${pictureSrc}" alt="Portrait de ${name}">
+                    <h2 class="name">${name}</h2>
+                </a>
+            </div>
+            <div class="artistDetails">
+                <p class="localisation">${localisation}</p>
+                <p class="tagline">${tagline}</p>
+                <p class="pricing">${pricing}</p>
+            </div>`;
 
-        // Creating artistCard article element
+        // Creating artist card element
         const artistCard = document.createElement("article");
-        artistCard.innerHTML = artistCardHtml
+        artistCard.innerHTML = artistCardHtml;
 
-        // Inserting card
+        // Inserting card into the section
         section.appendChild(artistCard);
     }
 }
-
-
-

@@ -1,3 +1,7 @@
+/**
+ * Entry point of the application
+ * Router function uses the html page name to call to adequate Controller
+ */
 function router() {
     const currentPage = window.location.pathname;
     const controller = new Controller(); // Une seule instance du Controller
@@ -9,4 +13,8 @@ function router() {
     }
 }
 
+/**
+ * Entry point of the application
+ * Execution of router()
+ */
 router();
