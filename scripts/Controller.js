@@ -1,3 +1,13 @@
+/**
+ * Controller class handling the application's main logic and view management
+ * Manages photographer pages, media sorting, and profile displays
+ *
+ * @class Controller
+ * @property {PhotographerMediasSorter} mediasSorter - Handles media sorting functionality
+ * @method displayPhotographersPage - Renders the photographers listing page
+ * @method initMediasSorter - Initializes and triggers the media sorting functionality
+ * @method displayPhotographerProfile - Renders a photographer's profile page with their media content
+ */
 class Controller {
     constructor() {
         this.mediasSorter = null; // Ne pas instancier directement
@@ -25,13 +35,8 @@ class Controller {
         const medias = await model.getPhotographerProfileContent(photographerId, sortMethod);
 
         const vue = new photographerDetails(header, medias);
-        for (let i = 0; i < medias.length; i++) {
-            medias[i].mediaHtmlCode = vue.displayPhotographerMediaFactory(medias[i]);
-        }
 
-        vue.displayPhotographerDetails();
-        vue.displayPhotographerContent();
-        vue.initiateLike();
+        vue.displayPhotographerDetailsAssembler();
 
         // Exécuter le callback si défini
         if (typeof callback === "function") {

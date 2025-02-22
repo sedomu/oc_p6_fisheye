@@ -78,4 +78,14 @@ class photographerDetails {
             this.displayPhotographerMedia(this.medias[i]);
         }
     }
+
+    displayPhotographerDetailsAssembler(){
+        for (let i = 0; i < this.medias.length; i++) {
+            this.medias[i].mediaHtmlCode = this.displayPhotographerMediaFactory(this.medias[i]); //4
+        }
+
+        this.displayPhotographerDetails();
+        this.displayPhotographerContent();
+        this.initiateLike();
+    }
 }

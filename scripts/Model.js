@@ -25,7 +25,7 @@ class Model{
         const data = await this.getData();
 
         if (sortMethod === "popularity") {
-            return data.media.sort((a, b) => a.likes - b.likes);
+            return data.media.sort((a, b) => b.likes - a.likes);
         } else if (sortMethod === "date"){
             return data.media.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
         } else if (sortMethod === "title"){
@@ -52,8 +52,6 @@ class Model{
     async getPhotographerProfileContent(photographerId, sortMethod){
         const data = await this.getMedias(sortMethod);
 
-        console.log(data);
-
         let mediaHtmlTags = [];
 
         for (let i = 0; i < data.length; i++){
@@ -64,17 +62,5 @@ class Model{
 
         return mediaHtmlTags;
     }
-
-
-    //
-    // filterByPhotographer(data, photographerId){
-    //     let array = [];
-    //     for (let i = 0; i < data.length; i++){
-    //         if (data[i].id === parseInt(photographerId) || data[i].photographerId === parseInt(photographerId)){
-    //             array.push(data[i]);
-    //         }
-    //     }
-    //     return array;
-    // }
 }
 

@@ -57,54 +57,6 @@ class listPhotographersVue{
 
         // Inserting card
         section.appendChild(artistCard);
-
-        // Just for fun: below the former code with creating each element and appending it in the tree:
-        // Creating all elements
-        // Structure divs
-        // const artist = document.createElement("article");
-        // const artistHero = document.createElement("div");
-        // artistHero.classList.add("artistHero");
-        // const artistDetails = document.createElement("div");
-        // artistDetails.classList.add("artistDetails");
-
-        // const link = document.createElement("a");
-        // link.setAttribute("href", urlAttribute);
-
-        // const picture = document.createElement("img");
-        // picture.setAttribute("src", pictureSrc);
-
-        // Photographer's name
-        // const name = document.createElement("h2");
-        // name.innerText = photographers.name;
-        // name.classList.add("name");
-
-        // const city = document.createElement("p");
-        // city.innerText = localisation;
-        // city.classList.add("localisation");
-
-        // Photographer's tagline
-        // const tagline = document.createElement("p");
-        // tagline.innerText = photographers.tagline;
-        // tagline.classList.add("tagline");
-
-        // const price = document.createElement("p");
-        // price.innerText = pricing;
-        // price.classList.add("pricing");
-
-        // Assembling elements
-        //Photographer's hero section
-        // link.appendChild(picture);
-        // link.appendChild(name);
-        // artistHero.appendChild(link);
-
-        // Photographer's details
-        // artistDetails.appendChild(city);
-        // artistDetails.appendChild(tagline);
-        // artistDetails.appendChild(price);
-
-        // Card
-        // artist.appendChild(artistHero);
-        // artist.appendChild(artistDetails);
     }
 }
 
