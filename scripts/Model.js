@@ -7,7 +7,7 @@
  * @method getData - Fetches and caches data from the JSON file.
  * @method getPhotographers - Retrieves a list of photographers.
  * @method getMedias - Retrieves and sorts media based on the specified sorting method.
- * @method getPhotographerProfileHeader - Retrieves profile details of a specific photographer.
+ * @method getPhotographerDetails - Retrieves profile details of a specific photographer.
  * @method getPhotographerProfileContent - Retrieves media content for a specific photographer.
  */
 class Model {
@@ -75,11 +75,16 @@ class Model {
      * Retrieves the profile header details of a specific photographer.
      *
      * @async
-     * @param {number|string} photographerId - The ID of the photographer.
+     * @param {number|string} [photographerId] - The ID of the photographer. Returns all photographers if empty
      * @returns {Promise<Object>} Resolves with the photographer's profile data.
      */
-    async getPhotographerProfileHeader(photographerId) {
+    async getPhotographerDetails(photographerId) {
         const data = await this.getPhotographers();
+
+        if (photographerId === undefined) {
+            return data;
+        }
+
         let photographerInfo = {};
 
         for (let i = 0; i < data.length; i++) {

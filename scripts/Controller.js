@@ -26,7 +26,7 @@ class Controller {
      */
     async displayPhotographersPage() {
         const model = new Model();
-        const photographers = await model.getPhotographers();
+        const photographers = await model.getPhotographerDetails();
         const vue = new listPhotographersVue();
         await vue.displayPhotographers(photographers);
     }
@@ -58,7 +58,7 @@ class Controller {
         const photographerId = Services.getParam("id");
 
         const model = new Model();
-        const header = await model.getPhotographerProfileHeader(photographerId);
+        const header = await model.getPhotographerDetails(photographerId);
         const medias = await model.getPhotographerProfileContent(photographerId, sortMethod);
 
         const vue = new photographerDetails(header, medias);
