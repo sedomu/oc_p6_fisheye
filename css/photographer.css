@@ -1,5 +1,6 @@
 :root{
     --dark-grey: #525252;
+    --red-cta: #901C1C;
 }
 
 .photograph-header {
@@ -45,7 +46,7 @@
     width: 170px;
     height: 70px;
     border: none;
-    background-color: #901C1C;
+    background-color: var(--red-cta);
     border-radius: 5px;
     cursor: pointer;
 }
@@ -71,6 +72,80 @@
     width: 200px;
 }
 
+.sort-bar{
+    margin: 20px 100px;
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+/* ################# SORT COMPONENT ################### */
+.component-block{
+    height: 70px;
+}
+
+.component-visual {
+    position: absolute;
+    height: 70px;
+    margin-bottom: 0;
+    border: none;
+    overflow: hidden;
+    background: darkred;
+    border-radius: 5px;
+}
+
+.component-visual:hover {
+    height: 171px;
+}
+
+button {
+    height: 70px;
+    width: 170px;
+    background-color: darkred;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    text-align: left;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.component-visual button:first-child::after{
+    content:"☟";
+    font-size:24px;
+    font-weight: 400;
+}
+
+.component-visual:hover button {
+    height: 53px;
+}
+
+.component-visual:hover button:first-child {
+    padding-top: 12px;
+    height: 58px;
+}
+
+.component-visual:hover button:first-child::after{
+    content:"☝︎";
+    font-size:24px;
+    font-weight: 400;
+}
+
+.component-visual:hover button:last-child {
+    padding-bottom: 12px;
+    height: 58px;
+}
+
+.component-visual:hover .separator {
+    margin: 0 auto;
+    height: 1px;
+    width: 150px;
+    background-color: white;
+}
+
+/*################ PHOTOGRAPHER PORTFOLIO ######################*/
 .photographer-portfolio{
     margin: 100px;
     display: grid;
