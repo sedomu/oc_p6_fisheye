@@ -67,7 +67,7 @@ class Model {
             case "title":
                 return data.media.sort((a, b) => a.title.localeCompare(b.title));
             default:
-                return data.media;
+                return data.media.sort((a, b) => b.likes - a.likes);
         }
     }
 

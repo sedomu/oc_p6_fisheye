@@ -26,13 +26,25 @@ class PhotographerMediasSorter {
 
     /**
      * Handles changes in the media sorting dropdown.
+     * Reorder options in the front-end component (selected option becomes first).
      * Clears the existing media display and re-renders the sorted media.
      *
      * @param {Event} e - The change event triggered by selecting a new sort option.
      * @returns {void}
      */
     handleSortChange(e) {
+        // Get option
         const sortMethod = e.target.value;
+
+        // Re-order options in the buttons list
+        // Selected option becomes first
+        let firstElement = document.querySelector("#first-option");
+        let eValue = e.target.value;
+        let eInnerText = e.target.innerText;
+        e.target.value = firstElement.value;
+        e.target.innerText = firstElement.innerText;
+        firstElement.value = eValue;
+        firstElement.innerText = eInnerText;
 
         // Remove existing media elements from the portfolio
         const portfolio = document.querySelector('.photographer-portfolio');
@@ -54,10 +66,16 @@ class PhotographerMediasSorter {
      * @returns {void}
      */
     sortMedias() {
-        const sorter = document.querySelector('#mediasSorter');
+        let buttons = document.querySelectorAll("button");
 
         // Remove any existing event listener before adding a new one
-        sorter.removeEventListener('change', this.handleSortChange);
-        sorter.addEventListener('change', this.handleSortChange);
+
+        for(let i = 0; i < buttons.length; i++) {
+            buttons[i].removeEventListener("click", this.handleSortChange);
+        }
+
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener("click", this.handleSortChange);
+        }
     }
 }

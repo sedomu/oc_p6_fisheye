@@ -21,14 +21,16 @@
             <div class="photograph-header">
             <!--        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>-->
             </div>
-            <div>
-                <label for="mediasSorter">Trier par</label>
-                <select id="mediasSorter">
-                    <option value="default">défaut</option>
-                    <option value="popularity">Popularité</option>
-                    <option value="date">Date</option>
-                    <option value="title">Titre</option>
-                </select>
+            <div class="sort-bar">
+                <div class="component-block">
+                    <div class="component-visual">
+                        <button id="first-option" value="popularity">Popularité</button>
+                        <div class="separator"></div>
+                        <button value="date">Date</button>
+                        <div class="separator"></div>
+                        <button value="title">Titre</button>
+                    </div>
+                </div>
             </div>
             <div class="photographer-portfolio"></div>
         </main>
