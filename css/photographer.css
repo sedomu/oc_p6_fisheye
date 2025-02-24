@@ -1,6 +1,7 @@
 :root{
     --dark-grey: #525252;
     --red-cta: #901C1C;
+    --orange: #DB9976;
 }
 
 .photograph-header {
@@ -91,6 +92,7 @@
     overflow: hidden;
     background: darkred;
     border-radius: 5px;
+    padding: 0 20px;
 }
 
 .component-visual:hover {
@@ -99,10 +101,11 @@
 
 button {
     height: 70px;
-    width: 170px;
+    width: 150px;
     background-color: darkred;
     color: white;
     font-weight: bold;
+    font-size: 1.125rem;
     border-radius: 5px;
     border: none;
     text-align: left;
@@ -113,9 +116,8 @@ button {
 }
 
 .component-visual button:first-child::after{
-    content:"☟";
-    font-size:24px;
-    font-weight: 400;
+    content: url("../assets/icons/arrow_down.svg");
+    height: 22px;
 }
 
 .component-visual:hover button {
@@ -128,9 +130,8 @@ button {
 }
 
 .component-visual:hover button:first-child::after{
-    content:"☝︎";
-    font-size:24px;
-    font-weight: 400;
+    content:url("../assets/icons/arrow_up.svg");
+    height: 22px;
 }
 
 .component-visual:hover button:last-child {
@@ -198,6 +199,37 @@ button {
 .media-card__like-counter[updated="true"]::after {
     content: url(../assets/icons/heart_full.svg);
 }
+
+/*################# POPULARITY BAR COMPONENT #########################*/
+.popularity-bar {
+    position: fixed;
+    width: 380px;
+    height: 70px;
+    background-color: var(--orange);
+    border-radius: 5px 5px 0 0;
+    bottom:0;
+    right: 36px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.popularity-bar > div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popularity-bar > div > p {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.popularity-bar__likes > img {
+    margin-left: 5px;
+    width: 21px;
+}
+
 
 
 #contact_modal {

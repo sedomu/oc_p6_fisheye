@@ -38,7 +38,7 @@ class PhotographerMediasSorter {
 
         // Re-order options in the buttons list
         // Selected option becomes first
-        let firstElement = document.querySelector("#first-option");
+        let firstElement = document.querySelector(".sorter-component-button.first-option");
         let eValue = e.target.value;
         let eInnerText = e.target.innerText;
         e.target.value = firstElement.value;
@@ -66,7 +66,7 @@ class PhotographerMediasSorter {
      * @returns {void}
      */
     sortMedias() {
-        let buttons = document.querySelectorAll("button");
+        let buttons = document.querySelectorAll(".sorter-component-button");
 
         // Remove any existing event listener before adding a new one
 
