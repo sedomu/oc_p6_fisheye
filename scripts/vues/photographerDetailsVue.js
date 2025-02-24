@@ -145,5 +145,9 @@ class photographerDetails {
         this.displayPhotographerDetails();
         this.displayPhotographerContent();
         this.initiateLike();
+
+        const likeComponent = new PopularityBar(this.photographer.id);
+        likeComponent.displayPopularityBar();
+        likeComponent.updateLikes();
     }
 }

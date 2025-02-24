@@ -1,6 +1,7 @@
 :root{
     --dark-grey: #525252;
     --red-cta: #901C1C;
+    --orange: #DB9976;
 }
 
 .photograph-header {
@@ -198,6 +199,37 @@ button {
 .media-card__like-counter[updated="true"]::after {
     content: url(../assets/icons/heart_full.svg);
 }
+
+/*################# POPULARITY BAR COMPONENT #########################*/
+.popularity-bar {
+    position: fixed;
+    width: 380px;
+    height: 70px;
+    background-color: var(--orange);
+    border-radius: 5px 5px 0 0;
+    bottom:0;
+    right: 36px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.popularity-bar > div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popularity-bar > div > p {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.popularity-bar__likes > img {
+    margin-left: 5px;
+    width: 21px;
+}
+
 
 
 #contact_modal {
