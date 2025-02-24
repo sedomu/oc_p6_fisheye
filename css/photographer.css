@@ -91,6 +91,7 @@
     overflow: hidden;
     background: darkred;
     border-radius: 5px;
+    padding: 0 20px;
 }
 
 .component-visual:hover {
@@ -99,10 +100,11 @@
 
 button {
     height: 70px;
-    width: 170px;
+    width: 150px;
     background-color: darkred;
     color: white;
     font-weight: bold;
+    font-size: 1.125rem;
     border-radius: 5px;
     border: none;
     text-align: left;
@@ -113,9 +115,8 @@ button {
 }
 
 .component-visual button:first-child::after{
-    content:"☟";
-    font-size:24px;
-    font-weight: 400;
+    content: url("../assets/icons/arrow_down.svg");
+    height: 22px;
 }
 
 .component-visual:hover button {
@@ -128,9 +129,8 @@ button {
 }
 
 .component-visual:hover button:first-child::after{
-    content:"☝︎";
-    font-size:24px;
-    font-weight: 400;
+    content:url("../assets/icons/arrow_up.svg");
+    height: 22px;
 }
 
 .component-visual:hover button:last-child {
