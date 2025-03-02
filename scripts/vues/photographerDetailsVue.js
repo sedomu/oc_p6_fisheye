@@ -62,9 +62,9 @@ class photographerDetails {
      */
     displayPhotographerMediaFactory(media) {
         if (media.image !== undefined) {
-            return `<img alt="${media.title}" src="./assets/photos/${media.image}">`;
+            return `<img src="./assets/photos/${media.image}" alt="${media.title}" title="${media.title}">`;
         } else if (media.video !== undefined) {
-            return `<video src="./assets/photos/${media.video}"></video>`;
+            return `<video src="./assets/photos/${media.video}" title="${media.title}"></video>`;
         } else {
             throw new Error("Unknown media type");
         }

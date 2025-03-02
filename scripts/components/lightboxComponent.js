@@ -7,6 +7,7 @@ class Lightbox {
         this.next = document.querySelector('.lightbox-modal__next');
         this.previousE = null;
         this.nextE = null;
+        this.heading = document.querySelector('.lightbox-modal__title');
         // this.close.addEventListener('click', this.closeModal.bind(this));
         this.close.addEventListener('click', () => {this.closeModal()});
     }
@@ -21,6 +22,7 @@ class Lightbox {
 
     displayOpenMedia(media) {
         this.viewer.replaceChild(media, this.viewer.firstChild);
+        this.heading.innerText = media.title;
         console.log(media.tagName.toLowerCase());
         this.openModal();
     }
@@ -44,7 +46,13 @@ class Lightbox {
         console.log(medias[i].src);
 
         const media = document.createElement(medias[i].tagName);
+        if (media.tagName === "VIDEO"){
+            media.controls = "controls";
+        }
         media.src = medias[i].src;
+        media.title = medias[i].title;
+
+        console.log(media);
         this.displayOpenMedia(media);
 
         this.handleControls(i, medias);
