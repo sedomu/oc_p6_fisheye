@@ -13,6 +13,7 @@ async function router() {
         await controller.displayPhotographerProfile("popularity");
         console.log("je vais lancer le composant Sort");
         const sortComponent = new PhotographerMediasSorter(controller);
+        const contactModalComponent = new ContactModal()
         console.log("TOUT EST LANCÉ");
     }
 }

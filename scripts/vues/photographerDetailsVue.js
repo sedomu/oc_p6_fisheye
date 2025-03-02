@@ -42,7 +42,7 @@ class photographerDetails {
                 <p class="location">${location}</p>
                 <p class="tagline">${tagline}</p>
             </div>
-            <div class="contact_photographer"><button class="contact_button">Contactez-moi</button></div>
+            <div class="contact_photographer"><button class="contact-button">Contactez-moi</button></div>
             <div class="photographer__profilePic">
                 <div class="photographer__profilePic--frame">
                     <img src="${profileImg}" alt="Portrait de ${name}">
