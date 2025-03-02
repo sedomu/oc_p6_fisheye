@@ -22,6 +22,8 @@ class PhotographerMediasSorter {
 
         // Ensure the correct `this` context is maintained when calling handleSortChange
         this.handleSortChange = this.handleSortChange.bind(this);
+
+        this.sortMedias()
     }
 
     /**
@@ -55,7 +57,7 @@ class PhotographerMediasSorter {
         // Call the controller to refresh and display the sorted media
         this.controller.displayPhotographerProfile(
             sortMethod,
-            this.controller.initMediasSorter.bind(this.controller)
+            // this.controller.initMediasSorter.bind(this.controller)
         );
     }
 
@@ -66,13 +68,14 @@ class PhotographerMediasSorter {
      * @returns {void}
      */
     sortMedias() {
-        let buttons = document.querySelectorAll(".sorter-component-button");
 
+        let buttons = document.querySelectorAll(".sorter-component-button");
+        console.log(buttons);
         // Remove any existing event listener before adding a new one
 
-        for(let i = 0; i < buttons.length; i++) {
-            buttons[i].removeEventListener("click", this.handleSortChange);
-        }
+        // for(let i = 0; i < buttons.length; i++) {
+        //     buttons[i].removeEventListener("click", this.handleSortChange);
+        // }
 
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].addEventListener("click", this.handleSortChange);

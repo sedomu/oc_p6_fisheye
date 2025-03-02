@@ -15,6 +15,7 @@ class Controller {
          * @type {PhotographerMediasSorter|null}
          */
         this.mediasSorter = null;
+        this.model = new Model();
     }
 
     /**
@@ -25,8 +26,8 @@ class Controller {
      * @returns {Promise<void>} Resolves when the homepage is fully rendered.
      */
     async displayPhotographersPage() {
-        const model = new Model();
-        const photographers = await model.getPhotographerDetails();
+        // const model = new Model();
+        const photographers = await this.model.getPhotographerDetails();
         const vue = new listPhotographersVue();
         await vue.displayPhotographers(photographers);
     }
@@ -51,22 +52,19 @@ class Controller {
      *
      * @async
      * @param {string} sortMethod - The sorting method to apply to the media content.
-     * @param {Function} [callback] - Optional callback function to execute after rendering.
      * @returns {Promise<void>} Resolves when the profile page is fully rendered.
      */
-    async displayPhotographerProfile(sortMethod, callback) {
+    async displayPhotographerProfile(sortMethod) {
         const photographerId = Services.getParam("id");
 
-        const model = new Model();
-        const header = await model.getPhotographerDetails(photographerId);
-        const medias = await model.getPhotographerProfileContent(photographerId, sortMethod);
+        // const model = new Model();
+        const header = await this.model.getPhotographerDetails(photographerId);
+        const medias = await this.model.getPhotographerProfileContent(photographerId, sortMethod);
 
         const vue = new photographerDetails(header, medias);
         vue.displayPhotographerDetailsAssembler();
 
-        // Execute the callback if provided
-        if (typeof callback === "function") {
-            callback();
-        }
+
+        // this.initMediasSorter();
     }
 }
