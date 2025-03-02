@@ -106,7 +106,9 @@ class photographerDetails {
         const article = document.createElement("article");
         article.classList.add("media-card");
         article.innerHTML = `
-            ${media.mediaHtmlCode}
+            <div class="media-card__media">
+                ${media.mediaHtmlCode}
+            </div>
             <div class="media-card__txt">
                 <p>${media.title}</p>
                 <p class="media-card__like-counter" updated="false">${media.likes}</p>
@@ -138,6 +140,7 @@ class photographerDetails {
      * @returns {void}
      */
     displayPhotographerDetailsAssembler() {
+        console.log("je lance l'assembleur de la vue");
         for (let i = 0; i < this.medias.length; i++) {
             this.medias[i].mediaHtmlCode = this.displayPhotographerMediaFactory(this.medias[i]);
         }
@@ -149,5 +152,10 @@ class photographerDetails {
         const likeComponent = new PopularityBar(this.photographer.id);
         likeComponent.displayPopularityBar();
         likeComponent.updateLikes();
+
+        const lightboxComponent = new Lightbox();
+        lightboxComponent.openMedia();
+
+        console.log("la vue est assemblée");
     }
 }

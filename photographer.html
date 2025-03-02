@@ -13,6 +13,7 @@
         <script src="scripts/Services.js"></script>
         <script src="scripts/main.js"></script>
         <script src="scripts/components/popularityBarComponent.js"></script>
+        <script src="scripts/components/lightboxComponent.js"></script>
     </head>
     <body>
         <header>
@@ -40,7 +41,7 @@
             <div class="modal">
                 <header>
                     <h2>Contactez-moi</h2>
-                    <img src="assets/icons/close.svg" onclick="closeModal()" alt="close"/>
+                    <img src="assets/icons/close_white.svg" onclick="closeModal()" alt="close"/>
                 </header>
                 <form>
                     <div>
@@ -57,10 +58,18 @@
                 </form>
             </div>
         </div>
+        <div class="lightbox-bg">
+            <div class="lightbox-modal">
+                <div class="lightbox-modal__close"><img src="./assets/icons/close_red.svg"> </div>
+                <div class="lightbox-modal__display">
+                    <div class="lightbox-modal__control lightbox-modal__previous"><img src="./assets/icons/arrow_left.svg"></div>
+                    <div class="lightbox-modal__viewer">
+                        <img src="./assets/photos/Animals_Majesty.jpg">
+                    </div>
+                    <div class="lightbox-modal__control lightbox-modal__next"><img src="./assets/icons/arrow_right.svg"></div>
+                </div>
+                <div class="lightbox-modal__title">Arc-en-ciel</div>
+            </div>
+        </div>
     </body>
-
-<script>
-    // const app = new PopularityBar(243);
-    // app.displayPopularityBar();
-</script>
 </html>
