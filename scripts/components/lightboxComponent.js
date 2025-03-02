@@ -2,7 +2,7 @@ class Lightbox {
     constructor() {
         this.element = document.querySelector('.lightbox-bg');
         this.close = document.querySelector('.lightbox-modal__close');
-        this.viewer = document.querySelector('.lightbox-modal__viewer > img');
+        this.viewer = document.querySelector('.lightbox-modal__viewer');
         // this.close.addEventListener('click', this.closeModal.bind(this));
         this.close.addEventListener('click', () => {this.closeModal()});
     }
@@ -16,7 +16,10 @@ class Lightbox {
     }
 
     handleOpenMedia(e){
-        this.viewer.src = e.target.src;
+        const media = document.createElement(e.target.tagName);
+        media.src = e.target.src;
+        this.viewer.replaceChild(media, this.viewer.firstChild);
+        console.log(e.target.tagName.toLowerCase());
         this.openModal();
     }
 
