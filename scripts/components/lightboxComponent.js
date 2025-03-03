@@ -1,90 +1,116 @@
 class Lightbox {
     constructor() {
+        this.modalState = false;
+
         this.element = document.querySelector('.lightbox-bg');
         this.close = document.querySelector('.lightbox-modal__close');
         this.viewer = document.querySelector('.lightbox-modal__viewer');
-        this.previous = document.querySelector('.lightbox-modal__previous');
-        this.next = document.querySelector('.lightbox-modal__next');
-        this.previousE = null;
-        this.nextE = null;
-        this.heading = document.querySelector('.lightbox-modal__title');
-        // this.close.addEventListener('click', this.closeModal.bind(this));
-        this.close.addEventListener('click', () => {this.closeModal()});
 
+        this.previous = document.querySelector('.lightbox-modal__previous');
+        this.previous.addEventListener('click', () => {this.handlePreviousMedia()});
+        this.next = document.querySelector('.lightbox-modal__next');
+        this.next.addEventListener('click', () => {this.handleNextMedia()});
+
+
+        // this.previousE = null;
+        // this.nextE = null;
+
+        this.heading = document.querySelector('.lightbox-modal__title');
+        this.close.addEventListener('click', () => {this.closeModal()});
         this.body = document.querySelector("body");
+
+        this.currentItem = null;
+        this.medias = document.querySelectorAll(".media-card__media > *");
+
+
+        // Keyboard controls
+        document.addEventListener('keyup', (e) => {
+            if (this.modalState && e.key === 'ArrowLeft'){
+                this.handlePreviousMedia();
+            } else if (this.modalState && e.key === 'ArrowRight'){
+                this.handleNextMedia();
+            } else if (this.modalState && e.key === 'Escape'){
+                this.closeModal();
+            }
+        })
+
     }
 
     closeModal() {
         this.element.style.display = 'none';
-
         this.body.style.overflowY = 'auto';
-
+        this.modalState = false;
     }
 
     openModal() {
         this.element.style.display = 'block';
-
         this.body.style.overflowY = 'hidden';
+        this.modalState = true;
     }
 
     displayOpenMedia(media) {
+
+        console.log(media);
+
         this.viewer.replaceChild(media, this.viewer.firstChild);
         this.heading.innerText = media.title;
-        console.log(media.tagName.toLowerCase());
         this.openModal();
     }
 
     handleControls(i, medias){
-        if (this.previousE && this.nextE){
-            console.log("coucou toi le not null");
-            this.previous.removeEventListener('click', this.previousE);
-            this.next.removeEventListener('click', this.nextE);
-        }
+        // if (this.previousE && this.nextE){
+        //     this.previous.removeEventListener('click', this.previousE);
+        //     document.removeEventListener("keyup", (e) => {
+        //         if (e.key === "ArrowLeft"){
+        //             this.previousE();
+        //         } else if (e.key === "ArrowRight"){
+        //             this.nextE()
+        //         }
+        //
+        //     })
+        // }
 
-        this.previousE = () => {this.handleOpenMedia(i > 0 ? i-1 : medias.length - 1, medias);};
-        this.nextE = () => {this.handleOpenMedia(i < medias.length - 1 ? i+1 : 0, medias);};
-        this.previous.addEventListener('click', this.previousE);
-        this.next.addEventListener('click', this.nextE);
+        // this.previousE = () => {this.handleOpenMedia(i > 0 ? i-1 : medias.length - 1, medias);};
+        // this.nextE = () => {this.handleOpenMedia(i < medias.length - 1 ? i+1 : 0, medias);};
+        //
+        // // mouse navigation
+        // this.previous.addEventListener('click', this.previousE);
+        // this.next.addEventListener('click', this.nextE);
+        // // keyboard navigation
+        // document.addEventListener("keyup", (e) => {
+        //     if (e.key === "ArrowLeft"){
+        //         this.previousE();
+        //     } else if (e.key === "ArrowRight"){
+        //         this.nextE()
+        //     }
+        //
+        // })
     }
 
-    handleOpenMedia(i, medias){
-        console.log(i, medias);
-        console.log(medias[i].tagName.toLowerCase());
-        console.log(medias[i].src);
+    handleOpenMedia(i){
+        this.currentItem = i;
 
-        const media = document.createElement(medias[i].tagName);
+        const media = document.createElement(this.medias[this.currentItem].tagName);
         if (media.tagName === "VIDEO"){
             media.controls = "controls";
         }
-        media.src = medias[i].src;
-        media.title = medias[i].title;
+        media.src = this.medias[this.currentItem].src;
+        media.title = this.medias[this.currentItem].title;
 
-        console.log(media);
         this.displayOpenMedia(media);
+    }
 
-        this.handleControls(i, medias);
+    handlePreviousMedia(){
+        this.handleOpenMedia((this.currentItem === 0) ? this.medias.length - 1 : this.currentItem - 1);
+    }
 
-
-        // console.log("media 0:")
-        // console.log(medias[0]);
-        //
-        // const media = document.createElement(e.target.tagName);
-        // media.src = e.target.src;
-        //
-        // this.displayOpenMedia(media);
-        //
-        // const previousE = medias[i-1];
-        // const nextE = medias[i+1];
-        //
-        // this.previous.addEventListener('click', () => {this.displayOpenMedia(previousE, i-1, medias);});
-        // this.next.addEventListener('click', () => {this.displayOpenMedia(nextE, i+1, medias);});
+    handleNextMedia(){
+        this.handleOpenMedia((this.currentItem === this.medias.length - 1) ? 0 : this.currentItem + 1);
     }
 
     openMedia(){
-        const medias = document.querySelectorAll(".media-card__media > *");
-
-        for (let i = 0; i < medias.length; i++) {
-            medias[i].addEventListener("click", () => {this.handleOpenMedia(i, medias)})
+        for (let i = 0; i < this.medias.length; i++) {
+            this.medias[i].addEventListener("click", () => {this.handleOpenMedia(i)})
         }
     }
 }
