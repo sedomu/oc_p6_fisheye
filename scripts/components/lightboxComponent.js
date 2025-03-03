@@ -10,14 +10,21 @@ class Lightbox {
         this.heading = document.querySelector('.lightbox-modal__title');
         // this.close.addEventListener('click', this.closeModal.bind(this));
         this.close.addEventListener('click', () => {this.closeModal()});
+
+        this.body = document.querySelector("body");
     }
 
     closeModal() {
         this.element.style.display = 'none';
+
+        this.body.style.overflowY = 'auto';
+
     }
 
     openModal() {
         this.element.style.display = 'block';
+
+        this.body.style.overflowY = 'hidden';
     }
 
     displayOpenMedia(media) {
