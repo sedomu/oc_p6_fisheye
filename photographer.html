@@ -14,6 +14,7 @@
         <script src="scripts/main.js"></script>
         <script src="scripts/components/popularityBarComponent.js"></script>
         <script src="scripts/components/lightboxComponent.js"></script>
+        <script src="scripts/components/contactModalComponent.js"></script>
     </head>
     <body>
         <header>
@@ -37,11 +38,11 @@
             <div class="photographer-portfolio"></div>
             <div class="popularity-bar"></div>
         </main>
-        <div id="contact_modal">
-            <div class="modal">
+        <div class="contact-bg">
+            <div class="contact-modal">
                 <header>
                     <h2>Contactez-moi</h2>
-                    <img src="assets/icons/close_white.svg" onclick="closeModal()" alt="close"/>
+                    <img src="assets/icons/close_white.svg" class="contact-modal__close" alt="close">
                 </header>
                 <form>
                     <div>
