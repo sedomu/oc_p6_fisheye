@@ -34,6 +34,15 @@ class Lightbox {
             }
         })
 
+        // Keyboard navigation (photographer's page)
+        document.addEventListener("keyup", (e) => {
+            if ((!this.modalState && e.key === "Enter" && e.target.title) || (!this.modalState && e.key === " ")) {
+                if (e.target.tagName === "IMG" || e.target.tagName === "VIDEO"){
+                    this.handleOpenMedia(Number(e.target.getAttribute("e-number")));
+                }
+            }
+        })
+
     }
 
     closeModal() {
@@ -89,6 +98,9 @@ class Lightbox {
 
     handleOpenMedia(i){
         this.currentItem = i;
+
+        console.log(this.currentItem);
+        console.log(this.medias);
 
         const media = document.createElement(this.medias[this.currentItem].tagName);
         if (media.tagName === "VIDEO"){

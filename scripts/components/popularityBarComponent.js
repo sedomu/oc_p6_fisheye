@@ -9,6 +9,26 @@ class PopularityBar {
     constructor(photographerId) {
         this.photographerId = photographerId;
         this.deltaLikes = 0;
+
+        // Keyboard navigation (photographer's page)
+        document.addEventListener("keyup", (e) => {
+            if (
+                (e.target.className === "media-card__like-counter" && e.key === "Enter") ||
+                (e.target.className === "media-card__like-counter" && e.key === " ")
+            )
+            {
+                const updatedAttribute = e.target.attributes.getNamedItem("updated");
+                if (updatedAttribute.value === "true") {
+                    e.target.setAttribute("updated", "false");
+                    e.target.innerText = parseInt(e.target.innerText) - 1;
+                    this.displayPopularityBar(-1);
+                } else {
+                    e.target.setAttribute("updated", "true");
+                    e.target.innerText = parseInt(e.target.innerText) + 1;
+                    this.displayPopularityBar(+1);
+                }
+            }
+        })
     }
 
     /**
@@ -23,8 +43,6 @@ class PopularityBar {
             likeButtons[i].addEventListener("click", (e) => {
                 if (e.target.attributes.updated.value === "true"){
                     this.displayPopularityBar(1);
-                } else {
-                    this.displayPopularityBar(-1);
                 }
             })
         }
