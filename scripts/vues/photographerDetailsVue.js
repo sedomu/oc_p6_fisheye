@@ -21,6 +21,11 @@ class photographerDetails {
     constructor(photographer, medias) {
         this.photographer = photographer; // Single object representing the photographer
         this.medias = medias; // Array containing media information
+
+        document.title = "Fisheye - " + this.photographer.name;
+        document.querySelector(".contact-modal > header > h2").innerHTML = `Contactez-moi <br>${this.photographer.name}`;
+
+
     }
 
     /**
@@ -49,6 +54,9 @@ class photographerDetails {
                 </div>    
             </div>
         `;
+
+        // instancing Contact button component
+        const contactModalComponent = new ContactModal();
     }
 
     /**
@@ -60,11 +68,11 @@ class photographerDetails {
      * @returns {string} The HTML string for the media.
      * @throws {Error} If the media type is unknown.
      */
-    displayPhotographerMediaFactory(media) {
+    displayPhotographerMediaFactory(media, eNumber) {
         if (media.image !== undefined) {
-            return `<img src="./assets/photos/${media.image}" alt="${media.title}" title="${media.title}">`;
+            return `<img src="./assets/photos/${media.image}" alt="${media.title}" title="${media.title}" tabindex="0" e-number="${eNumber}">`;
         } else if (media.video !== undefined) {
-            return `<video src="./assets/photos/${media.video}" title="${media.title}"></video>`;
+            return `<video src="./assets/photos/${media.video}" title="${media.title}" tabindex="0" e-number="${eNumber}"></video>`;
         } else {
             throw new Error("Unknown media type");
         }
@@ -111,7 +119,7 @@ class photographerDetails {
             </div>
             <div class="media-card__txt">
                 <p>${media.title}</p>
-                <p class="media-card__like-counter" updated="false">${media.likes}</p>
+                <p class="media-card__like-counter" updated="false" tabindex="0">${media.likes}</p>
             </div>`;
         photographerPortfolio.appendChild(article);
     }
@@ -142,7 +150,7 @@ class photographerDetails {
     displayPhotographerDetailsAssembler() {
         console.log("je lance l'assembleur de la vue");
         for (let i = 0; i < this.medias.length; i++) {
-            this.medias[i].mediaHtmlCode = this.displayPhotographerMediaFactory(this.medias[i]);
+            this.medias[i].mediaHtmlCode = this.displayPhotographerMediaFactory(this.medias[i], i);
         }
 
         this.displayPhotographerDetails();

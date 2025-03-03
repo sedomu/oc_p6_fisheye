@@ -1,8 +1,11 @@
 class ContactModal{
     constructor(){
+        this.modalState = false;
+
         this.modalBg = document.querySelector(".contact-bg");
         this.modalContent = document.querySelector(".contact-modal");
 
+        this.mainPageHeader = document.querySelector("body > header");
         this.mainPage = document.querySelector("main");
 
         this.openContactButton = document.querySelector(".contact-button");
@@ -12,13 +15,26 @@ class ContactModal{
 
         this.sendFormButton = document.querySelector(".contact_button");
         this.sendFormButton.addEventListener("click", (e)=>{this.sendForm(e)});
+
+        document.addEventListener("keyup", (e)=>{
+            if (this.modalState && e.key === "Escape") {
+                this.closeModal();
+            }
+        })
     }
 
     openModal(){
         this.modalBg.style.display = "block";
 
+        this.mainPageHeader.ariaHidden = "true";
         this.mainPage.style.position = "fixed";
-        this.mainPage.style.top = "0";
+        this.mainPage.style.top = "90px";
+        this.mainPage.ariaHidden = true;
+
+        this.modalState = true;
+        this.modalContent.ariaHidden = false;
+
+        this.closeModalButton.focus();
     }
 
     closeModal(){
@@ -26,6 +42,10 @@ class ContactModal{
 
         this.mainPage.style.position = "";
         this.mainPage.style.top = "";
+        this.mainPage.ariaHidden = false;
+
+        this.modalState = false;
+        this.modalContent.ariaHidden = true;
     }
 
     sendForm(e){

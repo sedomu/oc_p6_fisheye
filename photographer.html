@@ -18,7 +18,7 @@
     </head>
     <body>
         <header>
-          <a href="./index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/></a>
+          <a href="./index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" aria-description="Back to Home page"/></a>
         </header>
         <main id="main">
             <div class="photograph-header">
@@ -26,12 +26,12 @@
             </div>
             <div class="sort-bar">
                 <div class="component-block">
-                    <div class="component-visual">
-                        <button class="sorter-component-button first-option" value="popularity">Popularité</button>
+                    <div class="component-visual" aria-description="Sorting options menu" role="menubar" aria-haspopup="true" aria-expanded="false" tabindex="-1">
+                        <button class="sorter-component-button first-option" value="popularity" role="menuitem">Popularité</button>
                         <div class="separator"></div>
-                        <button class="sorter-component-button" value="date">Date</button>
+                        <button class="sorter-component-button" value="date" role="menuitem">Date</button>
                         <div class="separator"></div>
-                        <button class="sorter-component-button" value="title">Titre</button>
+                        <button class="sorter-component-button" value="title" role="menuitem">Titre</button>
                     </div>
                 </div>
             </div>
@@ -39,10 +39,10 @@
             <div class="popularity-bar"></div>
         </main>
         <div class="contact-bg">
-            <div class="contact-modal">
+            <div class="contact-modal" role="dialog" aria-hidden="true" aria-describedby="contactModalTitle" tabindex="-1">
                 <header>
-                    <h2>Contactez-moi</h2>
-                    <img src="assets/icons/close_white.svg" class="contact-modal__close" alt="close">
+                    <h2 id="contactModalTitle">Contactez-moi</h2>
+                    <img src="assets/icons/close_white.svg" class="contact-modal__close" alt="close" tabindex="0">
                 </header>
                 <form>
                     <div>
@@ -59,9 +59,9 @@
                 </form>
             </div>
         </div>
-        <div class="lightbox-bg">
-            <div class="lightbox-modal">
-                <div class="lightbox-modal__close"><img src="./assets/icons/close_red.svg"> </div>
+        <div class="lightbox-bg" tabindex="-1">
+            <div class="lightbox-modal" role="dialog" aria-hidden="true">
+                <div class="lightbox-modal__close" tabindex="1"><img src="./assets/icons/close_red.svg"> </div>
                 <div class="lightbox-modal__display">
                     <div class="lightbox-modal__control lightbox-modal__previous"><img src="./assets/icons/arrow_left.svg"></div>
                     <div class="lightbox-modal__viewer"><span>This is a placeholder to insert media to be read. This message shouldn't be displayed.</span></div>
