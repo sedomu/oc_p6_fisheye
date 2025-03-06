@@ -15,6 +15,13 @@ async function router() {
         const sortComponent = new PhotographerMediasSorter(controller);
         console.log("TOUT EST LANCÉ");
     }
+
+    //keyboard preventdefault for space key (get rid of the annoying scroll)
+    document.addEventListener("keydown", (e) => {
+        if (e.key === " "){
+            e.preventDefault();
+        }
+    })
 }
 
 /**
