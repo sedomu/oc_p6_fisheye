@@ -21,6 +21,11 @@ class ContactModal{
                 this.closeModal();
             }
         })
+
+        // form control (valid e-mail + message >1char.)
+        // names not required (rgpd compliance - it's not necessary for the functionnality)
+        // const regex
+
     }
 
     openModal(){
