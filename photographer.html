@@ -8,13 +8,15 @@
         <title>Fisheye - photographe </title>
         <script src="scripts/Model.js" ></script>
         <script src="scripts/vues/photographerDetailsVue.js" ></script>
-        <script src="scripts/Controller.js"></script>
+
         <script src="scripts/components/photographerMediasSorterComponent.js"></script>
         <script src="scripts/Services.js"></script>
-        <script src="scripts/main.js"></script>
+
         <script src="scripts/components/popularityBarComponent.js"></script>
         <script src="scripts/components/lightboxComponent.js"></script>
         <script src="scripts/components/contactModalComponent.js"></script>
+        <script src="scripts/Controller.js"></script>
+        <script src="scripts/main.js"></script>
     </head>
     <body>
         <header>
@@ -26,12 +28,12 @@
             </div>
             <div class="sort-bar">
                 <div class="component-block">
-                    <div class="component-visual" aria-description="Sorting options menu" role="menubar" aria-haspopup="true" aria-expanded="false" tabindex="-1">
-                        <button class="sorter-component-button first-option" value="popularity" role="menuitem">Popularité</button>
+                    <div class="component-visual" aria-description="Sorting options menu" role="menubar" aria-haspopup="true" aria-expanded="false" tabindex="0">
+                        <button class="sorter-component-button first-option" value="popularity" role="menuitem" tabindex="-1">Popularité</button>
                         <div class="separator"></div>
-                        <button class="sorter-component-button" value="date" role="menuitem">Date</button>
+                        <button class="sorter-component-button" value="date" role="menuitem" tabindex="-1">Date</button>
                         <div class="separator"></div>
-                        <button class="sorter-component-button" value="title" role="menuitem">Titre</button>
+                        <button class="sorter-component-button" value="title" role="menuitem" tabindex="-1">Titre</button>
                     </div>
                 </div>
             </div>

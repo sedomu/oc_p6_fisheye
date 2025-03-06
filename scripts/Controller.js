@@ -5,7 +5,6 @@
  * @class Controller
  * @property {PhotographerMediasSorter|null} mediasSorter - Handles media sorting functionality, initialized lazily.
  * @method displayPhotographersPage - Renders the photographers' listing page.
- * @method initMediasSorter - Initializes and triggers the media sorting functionality.
  * @method displayPhotographerProfile - Renders a photographer's profile page with their media content.
  */
 class Controller {
@@ -38,12 +37,12 @@ class Controller {
      *
      * @returns {void}
      */
-    initMediasSorter() {
-        if (!this.mediasSorter) {
-            this.mediasSorter = new PhotographerMediasSorter(this);
-        }
-        this.mediasSorter.sortMedias();
-    }
+    // initMediasSorter() {
+    //     if (!this.mediasSorter) {
+    //         this.mediasSorter = new PhotographerMediasSorter(this);
+    //     }
+    //     this.mediasSorter.sortMedias();
+    // }
 
     /**
      * Displays a photographer's profile page with their media content.
@@ -58,10 +57,10 @@ class Controller {
         const photographerId = Services.getParam("id");
 
         // const model = new Model();
-        const header = await this.model.getPhotographerDetails(photographerId);
+        const photographer = await this.model.getPhotographerDetails(photographerId);
         const medias = await this.model.getPhotographerProfileContent(photographerId, sortMethod);
 
-        const vue = new photographerDetails(header, medias);
+        const vue = new photographerDetails(photographer, medias);
         vue.displayPhotographerDetailsAssembler();
 
 

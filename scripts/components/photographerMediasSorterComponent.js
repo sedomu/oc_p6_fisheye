@@ -24,6 +24,32 @@ class PhotographerMediasSorter {
         this.handleSortChange = this.handleSortChange.bind(this);
 
         this.sortMedias()
+
+        // keyboard navigation
+        const uiGlobal = document.querySelector(".component-visual");
+        const uiButtons = document.querySelectorAll(".sorter-component-button");
+
+        document.addEventListener("keyup", (e) => {
+            if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("component-visual")){
+                e.target.classList.add("hovered");
+                uiGlobal.tabIndex = -1;
+                for (let i = 0; i < uiButtons.length; i++) {
+                    uiButtons[i].tabIndex = 0;
+                }
+                uiButtons[0].focus();
+            }
+
+            if (e.key === "Escape"  &&
+                e.target.classList.contains("sorter-component-button") && uiGlobal.classList.contains("hovered"))
+                    {
+                        uiGlobal.classList.remove("hovered");
+                        uiGlobal.tabIndex = 0;
+                        for (let i = 0; i < uiButtons.length; i++) {
+                            uiButtons[i].tabIndex = -1;
+                        }
+                        uiGlobal.focus();
+                    }
+        })
     }
 
     /**

@@ -99,7 +99,8 @@ main {
     padding: 0 20px;
 }
 
-.component-visual:hover {
+.component-visual:hover,
+.component-visual.hovered {
     height: 171px;
 }
 
@@ -130,26 +131,31 @@ button {
     height: 22px;
 }
 
-.component-visual:hover button {
+.component-visual:hover button,
+.component-visual.hovered button {
     height: 53px;
 }
 
-.component-visual:hover button:first-child {
+.component-visual:hover button:first-child,
+.component-visual.hovered button:first-child {
     padding-top: 12px;
     height: 58px;
 }
 
-.component-visual:hover button:first-child::after{
+.component-visual:hover button:first-child::after,
+.component-visual.hovered button:first-child::after {
     content:url("../assets/icons/arrow_up.svg");
     height: 22px;
 }
 
-.component-visual:hover button:last-child {
+.component-visual:hover button:last-child,
+.component-visual.hovered button:last-child {
     padding-bottom: 12px;
     height: 58px;
 }
 
-.component-visual:hover .separator {
+.component-visual:hover .separator,
+.component-visual.hovered .separator {
     margin: 0 auto;
     height: 1px;
     width: 150px;
