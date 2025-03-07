@@ -17,8 +17,35 @@ class PopularityBar {
                 (e.target.className === "media-card__like-counter" && e.key === " ")
             )
             {
+                this.updateLikes(e)
+            }
+        })
+
+        const likeButtons = document.querySelectorAll(".media-card__like-counter");
+
+        console.log("launching updateLikes from component")
+
+        for (let i = 0; i < likeButtons.length; i++) {
+            likeButtons[i].addEventListener("click", (e) => {
+                this.updateLikes(e);
+
+
+
+
+    })}}
+
+    /**
+     * Sets up event listeners for like buttons and updates the popularity bar
+     * when likes are added or removed
+     * For development purposes only as the API will handle this
+     */
+    updateLikes(e){
+
                 const updatedAttribute = e.target.attributes.getNamedItem("updated");
+                const testConst = e.target;
+
                 if (updatedAttribute.value === "true") {
+                    console.log(e.target, " versus ", testConst)
                     e.target.setAttribute("updated", "false");
                     e.target.innerText = parseInt(e.target.innerText) - 1;
                     this.displayPopularityBar(-1);
@@ -28,25 +55,8 @@ class PopularityBar {
                     this.displayPopularityBar(+1);
                 }
             }
-        })
-    }
 
-    /**
-     * Sets up event listeners for like buttons and updates the popularity bar
-     * when likes are added or removed
-     * For development purposes only as the API will handle this
-     */
-    updateLikes(){
-        const likeButtons = document.querySelectorAll(".media-card__like-counter");
 
-        for (let i = 0; i < likeButtons.length; i++) {
-            likeButtons[i].addEventListener("click", (e) => {
-                if (e.target.attributes.updated.value === "true"){
-                    this.displayPopularityBar(1);
-                }
-            })
-        }
-    }
 
     /**
      * Fetches photographer's price and total likes from the data model

@@ -78,27 +78,7 @@ class photographerDetails {
         }
     }
 
-    /**
-     * Initializes like button interactions by adding event listeners to each like counter.
-     *
-     * @returns {void}
-     */
-    initiateLike() {
-        const likeButtons = document.querySelectorAll(".media-card__like-counter");
 
-        for (const likeButton of likeButtons) {
-            likeButton.addEventListener("click", (e) => {
-                const updatedAttribute = e.target.attributes.getNamedItem("updated");
-                if (updatedAttribute.value === "true") {
-                    e.target.setAttribute("updated", "false");
-                    e.target.innerText = parseInt(e.target.innerText) - 1;
-                } else {
-                    e.target.setAttribute("updated", "true");
-                    e.target.innerText = parseInt(e.target.innerText) + 1;
-                }
-            });
-        }
-    }
 
     /**
      * Creates and appends an individual media card to the photographer's portfolio.
@@ -155,11 +135,11 @@ class photographerDetails {
 
         this.displayPhotographerDetails();
         this.displayPhotographerContent();
-        this.initiateLike();
+
 
         const likeComponent = new PopularityBar(this.photographer.id);
         likeComponent.displayPopularityBar();
-        likeComponent.updateLikes();
+        // likeComponent.updateLikes();
 
         const lightboxComponent = new Lightbox();
         lightboxComponent.openMedia();
