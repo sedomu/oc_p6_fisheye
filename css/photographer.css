@@ -2,6 +2,22 @@
     --dark-grey: #525252;
     --red-cta: #901C1C;
     --orange: #DB9976;
+    --high-contrast: magenta;
+}
+
+:focus-visible{
+    outline: 3px solid var(--high-contrast);
+    z-index: 100;
+}
+
+.media-card__like-counter:focus-visible {
+    outline-offset: -3px;
+}
+
+img:focus-visible,
+video:focus-visible {
+    outline-width: 5px;
+    outline-offset: -5px;
 }
 
 main {
