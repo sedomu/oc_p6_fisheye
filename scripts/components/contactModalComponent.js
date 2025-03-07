@@ -24,7 +24,7 @@ class ContactModal{
 
         // form control (valid e-mail + message >1char.)
         // names not required (rgpd compliance - it's not necessary for the functionnality)
-        this.regexEmail = new RegExp("^[a-zA-Z0-9\\-\\_\\.]+@[a-zA-Z0-9\\-\\_\\.]+\\.[a-z]{2,}$");
+        this.regexEmail = new RegExp("^[a-zA-Z0-9\\-_.]+@[a-zA-Z0-9\\-_.]+\\.[a-z]{2,}$");
         this.regexText = new RegExp("^.+$");
 
         this.inputEmail = document.getElementById("email");
@@ -107,6 +107,8 @@ class ContactModal{
         }
         if (countValid === i){
             this.inputSendBtn.removeAttribute("disabled");
+        } else {
+            this.inputSendBtn.setAttribute("disabled","");
         }
     }
 
