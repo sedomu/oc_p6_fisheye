@@ -24,8 +24,22 @@ class ContactModal{
 
         // form control (valid e-mail + message >1char.)
         // names not required (rgpd compliance - it's not necessary for the functionnality)
-        // const regex
+        this.regexEmail = new RegExp("^[a-zA-Z0-9\\-\\_\\.]+@[a-zA-Z0-9\\-\\_\\.]+\\.[a-z]{2,}$");
+        this.regexText = new RegExp("^.+$");
 
+        this.inputEmail = document.getElementById("email");
+        this.inputMsg = document.getElementById("message");
+        this.inputSendBtn = document.querySelector(".contact_button");
+
+        this.inputEmail.addEventListener("blur", (e) => {this.fieldValidation(e)});
+        this.inputMsg.addEventListener("blur", (e) => {this.fieldValidation(e)});
+
+        this.requiredInputs = [this.inputEmail, this.inputMsg];
+        let i = 0;
+        while (i < this.requiredInputs.length){
+            this.requiredInputs[i].addEventListener("blur", ()=>{this.formValidation()});
+            i++;
+        }
     }
 
     openModal(){
@@ -53,6 +67,49 @@ class ContactModal{
         this.modalContent.ariaHidden = true;
     }
 
+    fieldTest(event){
+        let result;
+
+        switch (event.target.id) {
+            case ("email"):
+                result =  this.regexEmail.test(event.target.value);
+                break;
+            case ("message"):
+                result = this.regexText.test(event.target.value);
+                break;
+            default:
+                result = false;
+                break;
+        }
+
+        return result;
+    }
+
+    fieldValidation(event){
+        event.target.classList.add("modified");
+        if (this.fieldTest(event)){
+            event.target.classList.remove("inputError");
+        } else {
+            event.target.classList.add("inputError");
+        }
+    }
+
+    formValidation(){
+        let i = 0;
+        let countValid = 0;
+        while (i < this.requiredInputs.length){
+            console.log(this.requiredInputs[i])
+            if (this.requiredInputs[i].classList.contains("inputError") === false &&
+                this.requiredInputs[i].classList.contains("modified") === true){
+                countValid++;
+            }
+            i++;
+        }
+        if (countValid === i){
+            this.inputSendBtn.removeAttribute("disabled");
+        }
+    }
+
     sendForm(e){
         // prevent form's default behaviour
         e.preventDefault();
@@ -78,6 +135,7 @@ class ContactModal{
         lastname.value = "";
         email.value = "";
         message.value = "";
+        this.inputSendBtn.setAttribute("disabled", "true");
 
         // closing form
         this.closeModal();

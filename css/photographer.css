@@ -322,6 +322,41 @@ form textarea {
     height: 170px;
 }
 
+input#email.inputError {
+    border: dashed 3px var(--red-lighter);
+}
+
+input#email.inputError + span::before {
+    content: "Erreur: Veuillez entrer une adresse e-mail valide (nom@domaine.tld)";
+    display: block;
+    background-color: var(--red-lighter);
+    color: var(--white-point);
+}
+
+textarea#message.inputError {
+    border: dashed 3px var(--red-lighter);
+}
+
+textarea#message.inputError + span::before {
+    content: "Erreur: Veuillez ne pas laisser ce champ vide";
+    display: block;
+    background-color: var(--red-lighter);
+    color: var(--white-point);
+}
+
+.contact_button:disabled {
+    cursor: not-allowed;
+    background-color: var(--dark-grey);
+}
+
+.contact_button:disabled + span::before {
+    content: "*Veuillez renseigner tous les champs obligatoires signalés par une astérisque (*)";
+    display: block;
+    background-color: var(--red-lighter);
+    color: var(--white-point);
+
+}
+
 /*############################# LIGHTBOX MODAL #########################*/
 .lightbox-bg {
     display: none;
