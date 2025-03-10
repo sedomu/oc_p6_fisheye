@@ -1,31 +1,22 @@
 /**
- * Handles sorting functionality for a photographer's media portfolio.
- * Listens for user interactions and updates the displayed media accordingly.
+ * Handles media sorting for a photographer's portfolio.
+ * Listens for sorting changes and updates media display accordingly.
  *
  * @class PhotographerMediasSorter
- * @property {Controller} controller - Reference to the main application controller.
- * @method handleSortChange - Handles sorting option changes and updates the media display.
- * @method sortMedias - Attaches the sorting event listener to the sorting dropdown.
+ * @property {Controller} controller - Reference to the main controller.
  */
 class PhotographerMediasSorter {
     /**
-     * Creates an instance of PhotographerMediasSorter.
+     * Initializes the media sorter with the given controller and sets up event listeners.
      *
-     * @param {Controller} controller - The main application controller responsible for handling media display.
+     * @param {Controller} controller - The main application controller.
      */
     constructor(controller) {
-        /**
-         * The controller instance that manages the photographer profile view.
-         * @type {Controller}
-         */
         this.controller = controller;
-
-        // Ensure the correct `this` context is maintained when calling handleSortChange
         this.handleSortChange = this.handleSortChange.bind(this);
 
-        this.sortMedias()
+        this.sortMedias();
 
-        // keyboard navigation
         const uiGlobal = document.querySelector(".component-visual");
         const uiButtons = document.querySelectorAll(".sorter-component-button");
 
@@ -34,9 +25,7 @@ class PhotographerMediasSorter {
             if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("component-visual")) {
                 e.target.classList.add("hovered");
                 uiGlobal.tabIndex = -1;
-                for (let i = 0; i < uiButtons.length; i++) {
-                    uiButtons[i].tabIndex = 0;
-                }
+                uiButtons.forEach(button => button.tabIndex = 0);
                 uiButtons[0].focus();
             }
 
@@ -56,29 +45,16 @@ class PhotographerMediasSorter {
                     uiGlobal.focus();
                 }
             }
-            // if ((e.key === "Escape" || e.key === "Enter") &&
-            //     e.target.classList.contains("sorter-component-button") && uiGlobal.classList.contains("hovered"))
-            //         {
-            //             uiGlobal.classList.remove("hovered");
-            //             uiGlobal.tabIndex = 0;
-            //             for (let i = 0; i < uiButtons.length; i++) {
-            //                 uiButtons[i].tabIndex = -1;
-            //             }
-            //             uiGlobal.focus();
-            //         }
-        })
+        });
     }
 
     /**
-     * Handles changes in the media sorting dropdown.
-     * Reorder options in the front-end component (selected option becomes first).
-     * Clears the existing media display and re-renders the sorted media.
+     * Handles sorting option changes and updates media display.
      *
-     * @param {Event} e - The change event triggered by selecting a new sort option.
+     * @param {Event} e - The change event from the sorting dropdown.
      * @returns {void}
      */
     handleSortChange(e) {
-        // Get option
         const sortMethod = e.target.value;
 
         // Re-order options in the buttons list
@@ -91,37 +67,19 @@ class PhotographerMediasSorter {
         firstElement.value = eValue;
         firstElement.innerText = eInnerText;
 
-        // Remove existing media elements from the portfolio
         const portfolio = document.querySelector('.photographer-portfolio');
-        while (portfolio.firstChild) {
-            portfolio.removeChild(portfolio.firstChild);
-        }
+        while (portfolio.firstChild) portfolio.removeChild(portfolio.firstChild);
 
-        // Call the controller to refresh and display the sorted media
-        this.controller.displayPhotographerProfile(
-            sortMethod,
-            // this.controller.initMediasSorter.bind(this.controller)
-        );
+        this.controller.displayPhotographerProfile(sortMethod);
     }
 
     /**
      * Initializes the media sorting event listener.
-     * Ensures that duplicate event listeners are not attached.
      *
      * @returns {void}
      */
     sortMedias() {
-
-        let buttons = document.querySelectorAll(".sorter-component-button");
-        console.log(buttons);
-        // Remove any existing event listener before adding a new one
-
-        // for(let i = 0; i < buttons.length; i++) {
-        //     buttons[i].removeEventListener("click", this.handleSortChange);
-        // }
-
-        for (let i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener("click", this.handleSortChange);
-        }
+        const buttons = document.querySelectorAll(".sorter-component-button");
+        buttons.forEach(button => button.addEventListener("click", this.handleSortChange));
     }
 }

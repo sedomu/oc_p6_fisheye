@@ -1,22 +1,21 @@
 /**
- * Entry point of the application
- * Router function uses the html page name to call to adequate Controller
+ * Router function that routes to the appropriate Controller method
+ * based on the current page URL.
+ *
+ * Displays the photographer's page or profile based on the URL.
  */
 async function router() {
     const currentPage = window.location.pathname;
-    const controller = new Controller(); // Une seule instance du Controller
+    const controller = new Controller(); // Single Controller instance
 
     if (currentPage.endsWith("index.html") || currentPage.endsWith(".html") === false) {
         controller.displayPhotographersPage();
     } else if (currentPage.endsWith("photographer.html")) {
-        console.log("je vais lancer la construction de la page");
         await controller.displayPhotographerProfile("popularity", true);
-        console.log("je vais lancer le composant Sort");
         const sortComponent = new PhotographerMediasSorter(controller);
-        console.log("TOUT EST LANCÉ");
     }
 
-    //keyboard preventdefault for space key (get rid of the annoying scroll)
+    // Prevents page scroll on space key press
     document.addEventListener("keydown", (e) => {
         if (e.key === " ") {
             e.preventDefault();
@@ -25,7 +24,6 @@ async function router() {
 }
 
 /**
- * Entry point of the application
- * Execution of router()
+ * Executes the router function to route to the appropriate page.
  */
 router();

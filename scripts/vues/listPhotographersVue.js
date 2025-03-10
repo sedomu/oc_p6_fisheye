@@ -1,67 +1,52 @@
 /**
- * Handles the display of photographers on the homepage.
+ * Manages the display of photographers on the homepage.
+ * Processes photographer data and renders artist cards.
  *
  * @class listPhotographersVue
- * @method displayPhotographers - Processes and renders photographer data as artist cards.
- * @method createArtistCard - Creates and appends an artist card to the DOM.
  */
 class listPhotographersVue {
     /**
-     * Displays a list of photographers by creating and appending artist cards to the DOM.
+     * Displays a list of photographers by creating and appending artist cards.
      *
-     * @param {Array<Object>} photographers - An array of photographer objects.
+     * @param {Array<Object>} photographers - Array of photographer objects.
      * @returns {void}
      */
     displayPhotographers(photographers) {
-        for (let i = 0; i < photographers.length; i++) {
-            this.createArtistCard(photographers[i]);
-        }
+        photographers.forEach(photographer => this.createArtistCard(photographer));
     }
 
     /**
-     * Creates and appends an artist card to the photographer section of the DOM.
+     * Creates and appends an artist card for a photographer.
      *
-     * @param {Object} photographers - An object containing data about a photographer.
-     * @param {number} photographers.id - The unique identifier for the photographer.
-     * @param {string} photographers.name - The name of the photographer.
-     * @param {string} photographers.portrait - The file name of the photographer's portrait image.
-     * @param {string} photographers.city - The city where the photographer is located.
-     * @param {string} photographers.country - The country where the photographer is located.
-     * @param {string} photographers.tagline - The photographer's tagline or description.
-     * @param {number} photographers.price - The photographer's daily pricing in euros.
+     * @param {Object} photographer - Photographer data object.
+     * @param {number} photographer.id - Unique photographer ID.
+     * @param {string} photographer.name - Photographer's name.
+     * @param {string} photographer.portrait - Filename of the portrait image.
+     * @param {string} photographer.city - Photographer's city.
+     * @param {string} photographer.country - Photographer's country.
+     * @param {string} photographer.tagline - Photographer's tagline.
+     * @param {number} photographer.price - Photographer's daily rate in euros.
      * @returns {void}
      */
-    createArtistCard(photographers) {
-        // Mapping DOM
+    createArtistCard(photographer) {
         const section = document.querySelector(".photographer_section");
-
-        // Generating photographer details
-        const urlAttribute = `photographer.html?id=${photographers.id}`;
-        const pictureSrc = `./assets/photographers/${photographers.portrait}`;
-        const name = photographers.name;
-        const localisation = `${photographers.city}, ${photographers.country}`;
-        const tagline = photographers.tagline;
-        const pricing = `${photographers.price}€/jour`;
-
-        // Creating artist card HTML
+        const urlAttribute = `photographer.html?id=${photographer.id}`;
+        const pictureSrc = `./assets/photographers/${photographer.portrait}`;
         const artistCardHtml = `
             <div class="artistHero">
                 <a href="${urlAttribute}">
-                    <img src="${pictureSrc}" alt="Portrait de ${name}">
-                    <h2 class="name">${name}</h2>
+                    <img src="${pictureSrc}" alt="Portrait de ${photographer.name}">
+                    <h2 class="name">${photographer.name}</h2>
                 </a>
             </div>
             <div class="artistDetails">
-                <p class="localisation">${localisation}</p>
-                <p class="tagline">${tagline}</p>
-                <p class="pricing">${pricing}</p>
+                <p class="localisation">${photographer.city}, ${photographer.country}</p>
+                <p class="tagline">${photographer.tagline}</p>
+                <p class="pricing">${photographer.price}€/jour</p>
             </div>`;
 
-        // Creating artist card element
         const artistCard = document.createElement("article");
         artistCard.innerHTML = artistCardHtml;
-
-        // Inserting card into the section
         section.appendChild(artistCard);
     }
 }

@@ -1,62 +1,39 @@
 /**
- * Controller class handling the application's main logic and view management.
- * Manages the photographers' listing page (homepage), media sorting, and individual photographer profile pages.
+ * Manages the main logic and view for the application,
+ * including the homepage, photographer profiles, and media sorting.
  *
  * @class Controller
- * @property {PhotographerMediasSorter|null} mediasSorter - Handles media sorting functionality, initialized lazily.
- * @method displayPhotographersPage - Renders the photographers' listing page.
- * @method displayPhotographerProfile - Renders a photographer's profile page with their media content.
+ * @property {PhotographerMediasSorter|null} mediasSorter - Lazily initialized media sorter instance.
  */
 class Controller {
     constructor() {
-        /**
-         * Media sorter instance, initialized only when needed.
-         * @type {PhotographerMediasSorter|null}
-         */
+        /** @type {PhotographerMediasSorter|null} */
         this.mediasSorter = null;
         this.model = new Model();
     }
 
     /**
-     * Displays the homepage with a list of photographers.
-     * Fetches data from the model and passes it to the view for rendering.
+     * Renders the photographers' listing page by fetching and displaying photographer details.
      *
      * @async
-     * @returns {Promise<void>} Resolves when the homepage is fully rendered.
+     * @returns {Promise<void>} Resolves when the page is fully rendered.
      */
     async displayPhotographersPage() {
-        // const model = new Model();
         const photographers = await this.model.getPhotographerDetails();
         const vue = new listPhotographersVue();
         await vue.displayPhotographers(photographers);
     }
 
     /**
-     * Initializes the media sorting component if not already initialized,
-     * and triggers the sorting functionality.
-     *
-     * @returns {void}
-     */
-    // initMediasSorter() {
-    //     if (!this.mediasSorter) {
-    //         this.mediasSorter = new PhotographerMediasSorter(this);
-    //     }
-    //     this.mediasSorter.sortMedias();
-    // }
-
-    /**
-     * Displays a photographer's profile page with their media content.
-     * Fetches profile header and media data based on the provided sorting method.
-     * Executes a callback function if provided.
+     * Displays a photographer's profile page with media, applying the given sorting method.
      *
      * @async
-     * @param {string} sortMethod - The sorting method to apply to the media content.
+     * @param {string} sortMethod - Sorting method for media.
+     * @param {boolean} [init=false] - Whether to initialize additional components (like, lightbox, etc.).
      * @returns {Promise<void>} Resolves when the profile page is fully rendered.
      */
     async displayPhotographerProfile(sortMethod, init = false) {
         const photographerId = Services.getParam("id");
-
-        // const model = new Model();
         const photographer = await this.model.getPhotographerDetails(photographerId);
         const medias = await this.model.getPhotographerProfileContent(photographerId, sortMethod);
 
@@ -64,15 +41,9 @@ class Controller {
         vue.displayPhotographerDetailsAssembler();
 
         if (init) {
-            const likeComponent = new PopularityBar(photographerId);
-            likeComponent.displayPopularityBar();
-            // likeComponent.updateLikes();
-
-            const lightboxComponent = new Lightbox();
-            // lightboxComponent.openMedia();
-
-            // instancing Contact button component
-            const contactModalComponent = new ContactModal();
+            new PopularityBar(photographerId).displayPopularityBar();
+            new Lightbox();
+            new ContactModal();
         }
     }
 }
