@@ -25,18 +25,18 @@ class PopularityBar {
                 this.updateLikes(e);
             }
         })
-    //     for (let i = 0; i < likeButtons.length; i++) {
-    //         likeButtons[i].addEventListener("click", (e) => {
-    //             this.updateLikes(e);
-    //
-    //
-    //
-    //
-    // })}
+        //     for (let i = 0; i < likeButtons.length; i++) {
+        //         likeButtons[i].addEventListener("click", (e) => {
+        //             this.updateLikes(e);
+        //
+        //
+        //
+        //
+        // })}
 
     }
 
-    keyboardControls(e){
+    keyboardControls(e) {
         if (
             (e.target.className === "media-card__like-counter" && e.key === "Enter") ||
             (e.target.className === "media-card__like-counter" && e.key === " ")
@@ -54,23 +54,22 @@ class PopularityBar {
      * when likes are added or removed
      * For development purposes only as the API will handle this
      */
-    updateLikes(e){
+    updateLikes(e) {
 
-                const updatedAttribute = e.target.attributes.getNamedItem("updated");
-                const testConst = e.target;
+        const updatedAttribute = e.target.attributes.getNamedItem("updated");
+        const testConst = e.target;
 
-                if (updatedAttribute.value === "true") {
-                    console.log(e.target, " versus ", testConst)
-                    e.target.setAttribute("updated", "false");
-                    e.target.innerText = parseInt(e.target.innerText) - 1;
-                    this.displayPopularityBar(-1);
-                } else {
-                    e.target.setAttribute("updated", "true");
-                    e.target.innerText = parseInt(e.target.innerText) + 1;
-                    this.displayPopularityBar(+1);
-                }
-            }
-
+        if (updatedAttribute.value === "true") {
+            console.log(e.target, " versus ", testConst)
+            e.target.setAttribute("updated", "false");
+            e.target.innerText = parseInt(e.target.innerText) - 1;
+            this.displayPopularityBar(-1);
+        } else {
+            e.target.setAttribute("updated", "true");
+            e.target.innerText = parseInt(e.target.innerText) + 1;
+            this.displayPopularityBar(+1);
+        }
+    }
 
 
     /**
@@ -79,7 +78,7 @@ class PopularityBar {
      * @property {number} price - Photographer's daily rate
      * @property {number} likes - Total number of likes across all media
      */
-    async getPopularityData(){
+    async getPopularityData() {
         const model = new Model();
         const photographer = await model.getPhotographerDetails(this.photographerId);
         const medias = await model.getPhotographerProfileContent(this.photographerId, "default");

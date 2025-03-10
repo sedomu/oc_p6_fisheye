@@ -63,7 +63,7 @@ class Controller {
         const vue = new photographerDetails(photographer, medias);
         vue.displayPhotographerDetailsAssembler();
 
-        if (init){
+        if (init) {
             const likeComponent = new PopularityBar(photographerId);
             likeComponent.displayPopularityBar();
             // likeComponent.updateLikes();

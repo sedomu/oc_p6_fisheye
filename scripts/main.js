@@ -6,7 +6,7 @@ async function router() {
     const currentPage = window.location.pathname;
     const controller = new Controller(); // Une seule instance du Controller
 
-    if (currentPage.endsWith("index.html")|| currentPage.endsWith(".html") === false) {
+    if (currentPage.endsWith("index.html") || currentPage.endsWith(".html") === false) {
         controller.displayPhotographersPage();
     } else if (currentPage.endsWith("photographer.html")) {
         console.log("je vais lancer la construction de la page");
@@ -18,7 +18,7 @@ async function router() {
 
     //keyboard preventdefault for space key (get rid of the annoying scroll)
     document.addEventListener("keydown", (e) => {
-        if (e.key === " "){
+        if (e.key === " ") {
             e.preventDefault();
         }
     })

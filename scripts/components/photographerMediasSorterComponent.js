@@ -31,7 +31,7 @@ class PhotographerMediasSorter {
 
         document.addEventListener("keyup", (e) => {
             // "Entering" sorting options with Enter or Space
-            if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("component-visual")){
+            if ((e.key === "Enter" || e.key === " ") && e.target.classList.contains("component-visual")) {
                 e.target.classList.add("hovered");
                 uiGlobal.tabIndex = -1;
                 for (let i = 0; i < uiButtons.length; i++) {
@@ -42,12 +42,12 @@ class PhotographerMediasSorter {
 
             // "Exiting" sorting options with Escape
             // "Selecting" sorting option
-            if (e.target.classList.contains("sorter-component-button") && uiGlobal.classList.contains("hovered")){
-                if (e.key === " "){
+            if (e.target.classList.contains("sorter-component-button") && uiGlobal.classList.contains("hovered")) {
+                if (e.key === " ") {
                     e.target.click();
                 }
 
-                if (e.key === "Escape" || e.key === "Enter" || e.key === " "){
+                if (e.key === "Escape" || e.key === "Enter" || e.key === " ") {
                     uiGlobal.classList.remove("hovered");
                     uiGlobal.tabIndex = 0;
                     for (let i = 0; i < uiButtons.length; i++) {

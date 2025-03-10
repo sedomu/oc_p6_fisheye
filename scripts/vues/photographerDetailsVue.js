@@ -79,7 +79,6 @@ class photographerDetails {
     }
 
 
-
     /**
      * Creates and appends an individual media card to the photographer's portfolio.
      *
