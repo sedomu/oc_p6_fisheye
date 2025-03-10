@@ -7,29 +7,35 @@ class Lightbox {
         this.viewer = document.querySelector('.lightbox-modal__viewer');
 
         this.previous = document.querySelector('.lightbox-modal__previous');
-        this.previous.addEventListener('click', () => {this.handlePreviousMedia()});
+        this.previous.addEventListener('click', () => {
+            this.handlePreviousMedia()
+        });
         this.next = document.querySelector('.lightbox-modal__next');
-        this.next.addEventListener('click', () => {this.handleNextMedia()});
+        this.next.addEventListener('click', () => {
+            this.handleNextMedia()
+        });
 
 
         // this.previousE = null;
         // this.nextE = null;
 
         this.heading = document.querySelector('.lightbox-modal__title');
-        this.close.addEventListener('click', () => {this.closeModal()});
+        this.close.addEventListener('click', () => {
+            this.closeModal()
+        });
         this.body = document.querySelector("body");
 
         this.currentItem = null;
-        this.medias = document.querySelectorAll(".media-card__media > *");
+        // this.medias = document.querySelectorAll(".media-card__media > *");
 
 
         // Keyboard controls
         document.addEventListener('keyup', (e) => {
-            if (this.modalState && e.key === 'ArrowLeft'){
+            if (this.modalState && e.key === 'ArrowLeft') {
                 this.handlePreviousMedia();
-            } else if (this.modalState && e.key === 'ArrowRight'){
+            } else if (this.modalState && e.key === 'ArrowRight') {
                 this.handleNextMedia();
-            } else if (this.modalState && e.key === 'Escape'){
+            } else if (this.modalState && e.key === 'Escape') {
                 this.closeModal();
             }
         })
@@ -37,9 +43,16 @@ class Lightbox {
         // Keyboard navigation (photographer's page)
         document.addEventListener("keyup", (e) => {
             if ((!this.modalState && e.key === "Enter" && e.target.title) || (!this.modalState && e.key === " ")) {
-                if (e.target.tagName === "IMG" || e.target.tagName === "VIDEO"){
+                if (e.target.tagName === "IMG" || e.target.tagName === "VIDEO") {
                     this.handleOpenMedia(Number(e.target.getAttribute("e-number")));
                 }
+            }
+        })
+
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("media-card__media-object")) {
+                console.log(e.target.getAttribute("e-number"))
+                this.handleOpenMedia(e.target.getAttribute("e-number"));
             }
         })
 
@@ -66,7 +79,7 @@ class Lightbox {
         this.openModal();
     }
 
-    handleControls(i, medias){
+    handleControls(i, medias) {
         // if (this.previousE && this.nextE){
         //     this.previous.removeEventListener('click', this.previousE);
         //     document.removeEventListener("keyup", (e) => {
@@ -96,14 +109,16 @@ class Lightbox {
         // })
     }
 
-    handleOpenMedia(i){
-        this.currentItem = i;
+    handleOpenMedia(i) {
+        this.currentItem = Number(i);
+
+        this.medias = document.querySelectorAll(".media-card__media > *");
 
         console.log(this.currentItem);
         console.log(this.medias);
 
         const media = document.createElement(this.medias[this.currentItem].tagName);
-        if (media.tagName === "VIDEO"){
+        if (media.tagName === "VIDEO") {
             media.controls = "controls";
         }
         media.src = this.medias[this.currentItem].src;
@@ -112,17 +127,17 @@ class Lightbox {
         this.displayOpenMedia(media);
     }
 
-    handlePreviousMedia(){
+    handlePreviousMedia() {
         this.handleOpenMedia((this.currentItem === 0) ? this.medias.length - 1 : this.currentItem - 1);
     }
 
-    handleNextMedia(){
+    handleNextMedia() {
         this.handleOpenMedia((this.currentItem === this.medias.length - 1) ? 0 : this.currentItem + 1);
     }
 
-    openMedia(){
-        for (let i = 0; i < this.medias.length; i++) {
-            this.medias[i].addEventListener("click", () => {this.handleOpenMedia(i)})
-        }
-    }
+    // openMedia(){
+    //     for (let i = 0; i < this.medias.length; i++) {
+    //         this.medias[i].addEventListener("click", () => {this.handleOpenMedia(i)})
+    //     }
+    // }
 }

@@ -56,7 +56,7 @@ class photographerDetails {
         `;
 
         // instancing Contact button component
-        const contactModalComponent = new ContactModal();
+        // const contactModalComponent = new ContactModal();
     }
 
     /**
@@ -70,35 +70,14 @@ class photographerDetails {
      */
     displayPhotographerMediaFactory(media, eNumber) {
         if (media.image !== undefined) {
-            return `<img src="./assets/photos/${media.image}" alt="${media.title}" title="${media.title}" tabindex="0" e-number="${eNumber}">`;
+            return `<img src="./assets/photos/${media.image}" class="media-card__media-object" alt="${media.title}" title="${media.title}" tabindex="0" e-number="${eNumber}">`;
         } else if (media.video !== undefined) {
-            return `<video src="./assets/photos/${media.video}" title="${media.title}" tabindex="0" e-number="${eNumber}"></video>`;
+            return `<video src="./assets/photos/${media.video}" class="media-card__media-object" title="${media.title}" tabindex="0" e-number="${eNumber}"></video>`;
         } else {
             throw new Error("Unknown media type");
         }
     }
 
-    /**
-     * Initializes like button interactions by adding event listeners to each like counter.
-     *
-     * @returns {void}
-     */
-    initiateLike() {
-        const likeButtons = document.querySelectorAll(".media-card__like-counter");
-
-        for (const likeButton of likeButtons) {
-            likeButton.addEventListener("click", (e) => {
-                const updatedAttribute = e.target.attributes.getNamedItem("updated");
-                if (updatedAttribute.value === "true") {
-                    e.target.setAttribute("updated", "false");
-                    e.target.innerText = parseInt(e.target.innerText) - 1;
-                } else {
-                    e.target.setAttribute("updated", "true");
-                    e.target.innerText = parseInt(e.target.innerText) + 1;
-                }
-            });
-        }
-    }
 
     /**
      * Creates and appends an individual media card to the photographer's portfolio.
@@ -155,14 +134,14 @@ class photographerDetails {
 
         this.displayPhotographerDetails();
         this.displayPhotographerContent();
-        this.initiateLike();
 
-        const likeComponent = new PopularityBar(this.photographer.id);
-        likeComponent.displayPopularityBar();
-        likeComponent.updateLikes();
 
-        const lightboxComponent = new Lightbox();
-        lightboxComponent.openMedia();
+        // const likeComponent = new PopularityBar(this.photographer.id);
+        // likeComponent.displayPopularityBar();
+        // // likeComponent.updateLikes();
+        //
+        // const lightboxComponent = new Lightbox();
+        // lightboxComponent.openMedia();
 
         console.log("la vue est assemblée");
     }

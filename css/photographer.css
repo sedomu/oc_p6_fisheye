@@ -1,7 +1,23 @@
-:root{
+:root {
     --dark-grey: #525252;
     --red-cta: #901C1C;
     --orange: #DB9976;
+    --high-contrast: magenta;
+}
+
+:focus-visible {
+    outline: 3px solid var(--high-contrast);
+    z-index: 100;
+}
+
+.media-card__like-counter:focus-visible {
+    outline-offset: -3px;
+}
+
+img:focus-visible,
+video:focus-visible {
+    outline-width: 5px;
+    outline-offset: -5px;
 }
 
 main {
@@ -77,14 +93,14 @@ main {
     width: 200px;
 }
 
-.sort-bar{
+.sort-bar {
     margin: 20px 100px;
     font-weight: 700;
     font-size: 1.125rem;
 }
 
 /* ################# SORT COMPONENT ################### */
-.component-block{
+.component-block {
     height: 70px;
 }
 
@@ -117,7 +133,7 @@ button {
 
 }
 
-.sorter-component-button{
+.sorter-component-button {
     height: 70px;
     width: 150px;
     text-align: left;
@@ -126,7 +142,7 @@ button {
     align-items: center;
 }
 
-.component-visual button:first-child::after{
+.component-visual button:first-child::after {
     content: url("../assets/icons/arrow_down.svg");
     height: 22px;
 }
@@ -144,7 +160,7 @@ button {
 
 .component-visual:hover button:first-child::after,
 .component-visual.hovered button:first-child::after {
-    content:url("../assets/icons/arrow_up.svg");
+    content: url("../assets/icons/arrow_up.svg");
     height: 22px;
 }
 
@@ -163,7 +179,7 @@ button {
 }
 
 /*################ PHOTOGRAPHER PORTFOLIO ######################*/
-.photographer-portfolio{
+.photographer-portfolio {
     margin: 100px;
     display: grid;
     grid-template-columns: repeat(auto-fill, 350px);
@@ -171,7 +187,7 @@ button {
     justify-content: space-between;
 }
 
-.media-card{
+.media-card {
     width: 350px;
     height: 350px;
     object-fit: contain;
@@ -185,7 +201,7 @@ button {
     border-radius: 5px;
 }
 
-.media-card__txt{
+.media-card__txt {
     max-height: 50px;
     /*background-color: #2c91e3;*/
     display: flex;
@@ -222,7 +238,7 @@ button {
     height: 70px;
     background-color: var(--orange);
     border-radius: 5px 5px 0 0;
-    bottom:0;
+    bottom: 0;
     right: 36px;
     display: flex;
     justify-content: space-between;
@@ -249,7 +265,7 @@ button {
 .contact-bg {
     display: none;
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     height: 1024px;
     min-height: 100vh;
@@ -322,6 +338,41 @@ form textarea {
     height: 170px;
 }
 
+input#email.inputError {
+    border: dashed 3px var(--red-lighter);
+}
+
+input#email.inputError + span::before {
+    content: "Erreur: Veuillez entrer une adresse e-mail valide (nom@domaine.tld)";
+    display: block;
+    background-color: var(--red-lighter);
+    color: var(--white-point);
+}
+
+textarea#message.inputError {
+    border: dashed 3px var(--red-lighter);
+}
+
+textarea#message.inputError + span::before {
+    content: "Erreur: Veuillez ne pas laisser ce champ vide";
+    display: block;
+    background-color: var(--red-lighter);
+    color: var(--white-point);
+}
+
+.contact_button:disabled {
+    cursor: not-allowed;
+    background-color: var(--dark-grey);
+}
+
+.contact_button:disabled + span::before {
+    content: "*Veuillez renseigner tous les champs obligatoires signalés par une astérisque (*)";
+    display: block;
+    background-color: var(--red-lighter);
+    color: var(--white-point);
+
+}
+
 /*############################# LIGHTBOX MODAL #########################*/
 .lightbox-bg {
     display: none;
@@ -332,7 +383,7 @@ form textarea {
     background: rgba(0, 0, 0, 0.5);
 }
 
-.lightbox-modal{
+.lightbox-modal {
     position: absolute;
     top: 5vh;
     left: 5vw;
@@ -343,20 +394,20 @@ form textarea {
     border-radius: 5px;
 }
 
-.lightbox-modal__close{
+.lightbox-modal__close {
     position: absolute;
     top: 40px;
     right: 40px;
     width: 42px;
 }
 
-.lightbox-modal__display{
+.lightbox-modal__display {
     display: flex;
     height: calc(100% - 62px);
     margin-top: 25px;
 }
 
-.lightbox-modal__control{
+.lightbox-modal__control {
     flex-basis: 96px;
     display: flex;
     justify-content: center;

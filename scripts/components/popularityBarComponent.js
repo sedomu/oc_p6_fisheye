@@ -10,25 +10,43 @@ class PopularityBar {
         this.photographerId = photographerId;
         this.deltaLikes = 0;
 
+        this.keyboardControls = this.keyboardControls.bind(this);
+
         // Keyboard navigation (photographer's page)
-        document.addEventListener("keyup", (e) => {
-            if (
-                (e.target.className === "media-card__like-counter" && e.key === "Enter") ||
-                (e.target.className === "media-card__like-counter" && e.key === " ")
-            )
-            {
-                const updatedAttribute = e.target.attributes.getNamedItem("updated");
-                if (updatedAttribute.value === "true") {
-                    e.target.setAttribute("updated", "false");
-                    e.target.innerText = parseInt(e.target.innerText) - 1;
-                    this.displayPopularityBar(-1);
-                } else {
-                    e.target.setAttribute("updated", "true");
-                    e.target.innerText = parseInt(e.target.innerText) + 1;
-                    this.displayPopularityBar(+1);
-                }
+        // document.removeEventListener("keyup", this.keyboardControls);
+        document.addEventListener("keyup", this.keyboardControls);
+
+        const likeButtons = document.querySelectorAll(".media-card__like-counter");
+
+        console.log("launching updateLikes from component")
+
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("media-card__like-counter")) {
+                this.updateLikes(e);
             }
         })
+        //     for (let i = 0; i < likeButtons.length; i++) {
+        //         likeButtons[i].addEventListener("click", (e) => {
+        //             this.updateLikes(e);
+        //
+        //
+        //
+        //
+        // })}
+
+    }
+
+    keyboardControls(e) {
+        if (
+            (e.target.className === "media-card__like-counter" && e.key === "Enter") ||
+            (e.target.className === "media-card__like-counter" && e.key === " ")
+        ) {
+            console.log("ICI MON DERNIER J'ESPERE DEBUG")
+            console.log("Je viens de Entrée ou Space")
+            console.log(e.target)
+            this.updateLikes(e)
+            // e.target.click();
+        }
     }
 
     /**
@@ -36,17 +54,23 @@ class PopularityBar {
      * when likes are added or removed
      * For development purposes only as the API will handle this
      */
-    updateLikes(){
-        const likeButtons = document.querySelectorAll(".media-card__like-counter");
+    updateLikes(e) {
 
-        for (let i = 0; i < likeButtons.length; i++) {
-            likeButtons[i].addEventListener("click", (e) => {
-                if (e.target.attributes.updated.value === "true"){
-                    this.displayPopularityBar(1);
-                }
-            })
+        const updatedAttribute = e.target.attributes.getNamedItem("updated");
+        const testConst = e.target;
+
+        if (updatedAttribute.value === "true") {
+            console.log(e.target, " versus ", testConst)
+            e.target.setAttribute("updated", "false");
+            e.target.innerText = parseInt(e.target.innerText) - 1;
+            this.displayPopularityBar(-1);
+        } else {
+            e.target.setAttribute("updated", "true");
+            e.target.innerText = parseInt(e.target.innerText) + 1;
+            this.displayPopularityBar(+1);
         }
     }
+
 
     /**
      * Fetches photographer's price and total likes from the data model
@@ -54,7 +78,7 @@ class PopularityBar {
      * @property {number} price - Photographer's daily rate
      * @property {number} likes - Total number of likes across all media
      */
-    async getPopularityData(){
+    async getPopularityData() {
         const model = new Model();
         const photographer = await model.getPhotographerDetails(this.photographerId);
         const medias = await model.getPhotographerProfileContent(this.photographerId, "default");

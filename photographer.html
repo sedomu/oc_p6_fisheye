@@ -1,76 +1,86 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <link href="css/style.css" rel="stylesheet" type="text/css" />
-        <meta charset="utf-8">
-        <link rel="icon" type="image/png" href="assets/favicon.png">
-        <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-        <title>Fisheye - photographe </title>
-        <script src="scripts/Model.js" ></script>
-        <script src="scripts/vues/photographerDetailsVue.js" ></script>
+<head>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+    <link href="assets/favicon.png" rel="icon" type="image/png">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <title>Fisheye - photographe </title>
+    <script src="scripts/Model.js"></script>
+    <script src="scripts/vues/photographerDetailsVue.js"></script>
 
-        <script src="scripts/components/photographerMediasSorterComponent.js"></script>
-        <script src="scripts/Services.js"></script>
+    <script src="scripts/components/photographerMediasSorterComponent.js"></script>
+    <script src="scripts/Services.js"></script>
 
-        <script src="scripts/components/popularityBarComponent.js"></script>
-        <script src="scripts/components/lightboxComponent.js"></script>
-        <script src="scripts/components/contactModalComponent.js"></script>
-        <script src="scripts/Controller.js"></script>
-        <script src="scripts/main.js"></script>
-    </head>
-    <body>
+    <script src="scripts/components/popularityBarComponent.js"></script>
+    <script src="scripts/components/lightboxComponent.js"></script>
+    <script src="scripts/components/contactModalComponent.js"></script>
+    <script src="scripts/Controller.js"></script>
+    <script src="scripts/main.js"></script>
+</head>
+<body>
+<header>
+    <a class="home-link" href="./index.html">
+        <img alt="Fisheye Home page" aria-description="Back to Home page" class="logo" src="assets/images/logo.png"/>
+    </a>
+</header>
+<main id="main">
+    <div class="photograph-header">
+        <!--        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>-->
+    </div>
+    <div class="sort-bar">
+        <div class="component-block">
+            <div aria-description="Sorting options menu" aria-expanded="false" aria-haspopup="true" class="component-visual"
+                 role="menubar" tabindex="0">
+                <button class="sorter-component-button first-option" role="menuitem" tabindex="-1" value="popularity">
+                    Popularité
+                </button>
+                <div class="separator"></div>
+                <button class="sorter-component-button" role="menuitem" tabindex="-1" value="date">Date</button>
+                <div class="separator"></div>
+                <button class="sorter-component-button" role="menuitem" tabindex="-1" value="title">Titre</button>
+            </div>
+        </div>
+    </div>
+    <div class="photographer-portfolio"></div>
+    <div class="popularity-bar"></div>
+</main>
+<div class="contact-bg">
+    <div aria-describedby="contactModalTitle" aria-hidden="true" class="contact-modal" role="dialog" tabindex="-1">
         <header>
-          <a href="./index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" aria-description="Back to Home page"/></a>
+            <h2 id="contactModalTitle">Contactez-moi</h2>
+            <img alt="close" class="contact-modal__close" src="assets/icons/close_white.svg" tabindex="0">
         </header>
-        <main id="main">
-            <div class="photograph-header">
-            <!--        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>-->
+        <form>
+            <div>
+                <label for="firstname">Prénom</label>
+                <input id="firstname" type="text"/>
+                <label for="lastname">Nom</label>
+                <input id="lastname" type="text"/>
+                <label for="email">Email*</label>
+                <input id="email" required type="email"/>
+                <span></span>
+                <label for="message">Votre message*</label>
+                <textarea id="message" required></textarea>
+                <span></span>
             </div>
-            <div class="sort-bar">
-                <div class="component-block">
-                    <div class="component-visual" aria-description="Sorting options menu" role="menubar" aria-haspopup="true" aria-expanded="false" tabindex="0">
-                        <button class="sorter-component-button first-option" value="popularity" role="menuitem" tabindex="-1">Popularité</button>
-                        <div class="separator"></div>
-                        <button class="sorter-component-button" value="date" role="menuitem" tabindex="-1">Date</button>
-                        <div class="separator"></div>
-                        <button class="sorter-component-button" value="title" role="menuitem" tabindex="-1">Titre</button>
-                    </div>
-                </div>
+            <button class="contact_button" disabled>Envoyer</button>
+            <span></span>
+        </form>
+    </div>
+</div>
+<div class="lightbox-bg" tabindex="-1">
+    <div aria-hidden="true" class="lightbox-modal" role="dialog">
+        <div class="lightbox-modal__close" tabindex="1"><img src="./assets/icons/close_red.svg"></div>
+        <div class="lightbox-modal__display">
+            <div class="lightbox-modal__control lightbox-modal__previous"><img src="./assets/icons/arrow_left.svg">
             </div>
-            <div class="photographer-portfolio"></div>
-            <div class="popularity-bar"></div>
-        </main>
-        <div class="contact-bg">
-            <div class="contact-modal" role="dialog" aria-hidden="true" aria-describedby="contactModalTitle" tabindex="-1">
-                <header>
-                    <h2 id="contactModalTitle">Contactez-moi</h2>
-                    <img src="assets/icons/close_white.svg" class="contact-modal__close" alt="close" tabindex="0">
-                </header>
-                <form>
-                    <div>
-                        <label for="firstname">Prénom</label>
-                        <input type="text" id="firstname"/>
-                        <label for="lastname">Nom</label>
-                        <input type="text" id="lastname"/>
-                        <label for="email">Email</label>
-                        <input id="email" type="email"/>
-                        <label for="message">Votre message</label>
-                        <textarea id="message"></textarea>
-                    </div>
-                    <button class="contact_button">Envoyer</button>
-                </form>
+            <div class="lightbox-modal__viewer"><span>This is a placeholder to insert media to be read. This message shouldn't be displayed.</span>
             </div>
+            <div class="lightbox-modal__control lightbox-modal__next"><img src="./assets/icons/arrow_right.svg"></div>
         </div>
-        <div class="lightbox-bg" tabindex="-1">
-            <div class="lightbox-modal" role="dialog" aria-hidden="true">
-                <div class="lightbox-modal__close" tabindex="1"><img src="./assets/icons/close_red.svg"> </div>
-                <div class="lightbox-modal__display">
-                    <div class="lightbox-modal__control lightbox-modal__previous"><img src="./assets/icons/arrow_left.svg"></div>
-                    <div class="lightbox-modal__viewer"><span>This is a placeholder to insert media to be read. This message shouldn't be displayed.</span></div>
-                    <div class="lightbox-modal__control lightbox-modal__next"><img src="./assets/icons/arrow_right.svg"></div>
-                </div>
-                <div class="lightbox-modal__title">Arc-en-ciel</div>
-            </div>
-        </div>
-    </body>
+        <div class="lightbox-modal__title">Arc-en-ciel</div>
+    </div>
+</div>
+</body>
 </html>
