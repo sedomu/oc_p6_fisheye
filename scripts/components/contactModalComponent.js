@@ -8,8 +8,8 @@ class ContactModal{
         this.mainPageHeader = document.querySelector("body > header");
         this.mainPage = document.querySelector("main");
 
-        this.openContactButton = document.querySelector(".contact-button");
-        this.openContactButton.addEventListener("click", ()=>{this.openModal()});
+        // this.openContactButton = document.querySelector(".contact-button");
+        // this.openContactButton.addEventListener("click", ()=>{this.openModal()});
         this.closeModalButton = document.querySelector(".contact-modal__close");
         this.closeModalButton.addEventListener("click", ()=>{this.closeModal()});
 
@@ -19,6 +19,12 @@ class ContactModal{
         document.addEventListener("keyup", (e)=>{
             if (this.modalState && e.key === "Escape") {
                 this.closeModal();
+            }
+        })
+
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("contact-button")){
+                this.openModal();
             }
         })
 

@@ -56,7 +56,7 @@ class photographerDetails {
         `;
 
         // instancing Contact button component
-        const contactModalComponent = new ContactModal();
+        // const contactModalComponent = new ContactModal();
     }
 
     /**
@@ -70,9 +70,9 @@ class photographerDetails {
      */
     displayPhotographerMediaFactory(media, eNumber) {
         if (media.image !== undefined) {
-            return `<img src="./assets/photos/${media.image}" alt="${media.title}" title="${media.title}" tabindex="0" e-number="${eNumber}">`;
+            return `<img src="./assets/photos/${media.image}" class="media-card__media-object" alt="${media.title}" title="${media.title}" tabindex="0" e-number="${eNumber}">`;
         } else if (media.video !== undefined) {
-            return `<video src="./assets/photos/${media.video}" title="${media.title}" tabindex="0" e-number="${eNumber}"></video>`;
+            return `<video src="./assets/photos/${media.video}" class="media-card__media-object" title="${media.title}" tabindex="0" e-number="${eNumber}"></video>`;
         } else {
             throw new Error("Unknown media type");
         }
@@ -137,12 +137,12 @@ class photographerDetails {
         this.displayPhotographerContent();
 
 
-        const likeComponent = new PopularityBar(this.photographer.id);
-        likeComponent.displayPopularityBar();
-        // likeComponent.updateLikes();
-
-        const lightboxComponent = new Lightbox();
-        lightboxComponent.openMedia();
+        // const likeComponent = new PopularityBar(this.photographer.id);
+        // likeComponent.displayPopularityBar();
+        // // likeComponent.updateLikes();
+        //
+        // const lightboxComponent = new Lightbox();
+        // lightboxComponent.openMedia();
 
         console.log("la vue est assemblée");
     }

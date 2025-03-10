@@ -20,7 +20,7 @@ class Lightbox {
         this.body = document.querySelector("body");
 
         this.currentItem = null;
-        this.medias = document.querySelectorAll(".media-card__media > *");
+        // this.medias = document.querySelectorAll(".media-card__media > *");
 
 
         // Keyboard controls
@@ -40,6 +40,13 @@ class Lightbox {
                 if (e.target.tagName === "IMG" || e.target.tagName === "VIDEO"){
                     this.handleOpenMedia(Number(e.target.getAttribute("e-number")));
                 }
+            }
+        })
+
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("media-card__media-object")){
+                console.log(e.target.getAttribute("e-number"))
+                this.handleOpenMedia(e.target.getAttribute("e-number"));
             }
         })
 
@@ -97,7 +104,9 @@ class Lightbox {
     }
 
     handleOpenMedia(i){
-        this.currentItem = i;
+        this.currentItem = Number(i);
+
+        this.medias = document.querySelectorAll(".media-card__media > *");
 
         console.log(this.currentItem);
         console.log(this.medias);
@@ -120,9 +129,9 @@ class Lightbox {
         this.handleOpenMedia((this.currentItem === this.medias.length - 1) ? 0 : this.currentItem + 1);
     }
 
-    openMedia(){
-        for (let i = 0; i < this.medias.length; i++) {
-            this.medias[i].addEventListener("click", () => {this.handleOpenMedia(i)})
-        }
-    }
+    // openMedia(){
+    //     for (let i = 0; i < this.medias.length; i++) {
+    //         this.medias[i].addEventListener("click", () => {this.handleOpenMedia(i)})
+    //     }
+    // }
 }

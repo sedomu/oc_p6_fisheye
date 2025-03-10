@@ -10,7 +10,7 @@ async function router() {
         controller.displayPhotographersPage();
     } else if (currentPage.endsWith("photographer.html")) {
         console.log("je vais lancer la construction de la page");
-        await controller.displayPhotographerProfile("popularity");
+        await controller.displayPhotographerProfile("popularity", true);
         console.log("je vais lancer le composant Sort");
         const sortComponent = new PhotographerMediasSorter(controller);
         console.log("TOUT EST LANCÉ");

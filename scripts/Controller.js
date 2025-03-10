@@ -53,7 +53,7 @@ class Controller {
      * @param {string} sortMethod - The sorting method to apply to the media content.
      * @returns {Promise<void>} Resolves when the profile page is fully rendered.
      */
-    async displayPhotographerProfile(sortMethod) {
+    async displayPhotographerProfile(sortMethod, init = false) {
         const photographerId = Services.getParam("id");
 
         // const model = new Model();
@@ -63,7 +63,16 @@ class Controller {
         const vue = new photographerDetails(photographer, medias);
         vue.displayPhotographerDetailsAssembler();
 
+        if (init){
+            const likeComponent = new PopularityBar(photographerId);
+            likeComponent.displayPopularityBar();
+            // likeComponent.updateLikes();
 
-        // this.initMediasSorter();
+            const lightboxComponent = new Lightbox();
+            // lightboxComponent.openMedia();
+
+            // instancing Contact button component
+            const contactModalComponent = new ContactModal();
+        }
     }
 }

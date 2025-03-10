@@ -10,29 +10,44 @@ class PopularityBar {
         this.photographerId = photographerId;
         this.deltaLikes = 0;
 
+        this.keyboardControls = this.keyboardControls.bind(this);
+
         // Keyboard navigation (photographer's page)
-        document.addEventListener("keyup", (e) => {
-            if (
-                (e.target.className === "media-card__like-counter" && e.key === "Enter") ||
-                (e.target.className === "media-card__like-counter" && e.key === " ")
-            )
-            {
-                this.updateLikes(e)
-            }
-        })
+        // document.removeEventListener("keyup", this.keyboardControls);
+        document.addEventListener("keyup", this.keyboardControls);
 
         const likeButtons = document.querySelectorAll(".media-card__like-counter");
 
         console.log("launching updateLikes from component")
 
-        for (let i = 0; i < likeButtons.length; i++) {
-            likeButtons[i].addEventListener("click", (e) => {
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("media-card__like-counter")) {
                 this.updateLikes(e);
+            }
+        })
+    //     for (let i = 0; i < likeButtons.length; i++) {
+    //         likeButtons[i].addEventListener("click", (e) => {
+    //             this.updateLikes(e);
+    //
+    //
+    //
+    //
+    // })}
 
+    }
 
-
-
-    })}}
+    keyboardControls(e){
+        if (
+            (e.target.className === "media-card__like-counter" && e.key === "Enter") ||
+            (e.target.className === "media-card__like-counter" && e.key === " ")
+        ) {
+            console.log("ICI MON DERNIER J'ESPERE DEBUG")
+            console.log("Je viens de Entrée ou Space")
+            console.log(e.target)
+            this.updateLikes(e)
+            // e.target.click();
+        }
+    }
 
     /**
      * Sets up event listeners for like buttons and updates the popularity bar
