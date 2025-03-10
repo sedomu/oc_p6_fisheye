@@ -1,15 +1,10 @@
 class ContactModal {
     constructor() {
         this.modalState = false;
-
         this.modalBg = document.querySelector(".contact-bg");
         this.modalContent = document.querySelector(".contact-modal");
-
         this.mainPageHeader = document.querySelector("body > header");
         this.mainPage = document.querySelector("main");
-
-        // this.openContactButton = document.querySelector(".contact-button");
-        // this.openContactButton.addEventListener("click", ()=>{this.openModal()});
         this.closeModalButton = document.querySelector(".contact-modal__close");
         this.closeModalButton.addEventListener("click", () => {
             this.closeModal()
@@ -114,7 +109,6 @@ class ContactModal {
         let i = 0;
         let countValid = 0;
         while (i < this.requiredInputs.length) {
-            console.log(this.requiredInputs[i])
             if (this.requiredInputs[i].classList.contains("inputError") === false &&
                 this.requiredInputs[i].classList.contains("modified") === true) {
                 countValid++;

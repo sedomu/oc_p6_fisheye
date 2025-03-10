@@ -1,34 +1,20 @@
 /**
- * Handles data retrieval and management for photographers and their media.
- * Fetches data from a JSON file and provides methods to access and sort it.
- *
+ * Manages data retrieval and sorting for photographers and media
  * @class Model
- * @property {Object|null} data - Cached data from the JSON file to minimize repeated fetch requests.
- * @method getData - Fetches and caches data from the JSON file.
- * @method getPhotographers - Retrieves a list of photographers.
- * @method getMedias - Retrieves and sorts media based on the specified sorting method.
- * @method getPhotographerDetails - Retrieves profile details of a specific photographer.
- * @method getPhotographerProfileContent - Retrieves media content for a specific photographer.
+ * @property {Object|null} data - Cached JSON data
  */
 class Model {
     /**
-     * Creates an instance of Model.
-     * Initializes data storage to null until fetched.
+     * Initialize empty data cache
      */
     constructor() {
-        /**
-         * Stores fetched data to prevent redundant fetch requests.
-         * @type {Object|null}
-         */
         this.data = null;
     }
 
     /**
-     * Fetches and caches data from the "data/photographers.json" file.
-     * If data has already been fetched, it returns the cached version.
-     *
+     * Fetch and cache JSON data
      * @async
-     * @returns {Promise<Object>} Resolves with the parsed JSON data.
+     * @returns {Promise<Object>} Parsed JSON data
      */
     async getData() {
         if (this.data === null) {
@@ -39,10 +25,9 @@ class Model {
     }
 
     /**
-     * Retrieves a list of photographers from the dataset.
-     *
+     * Get list of photographers
      * @async
-     * @returns {Promise<Array>} Resolves with an array of photographer objects.
+     * @returns {Promise<Array>} Photographer objects
      */
     async getPhotographers() {
         const data = await this.getData();
@@ -50,11 +35,10 @@ class Model {
     }
 
     /**
-     * Retrieves and sorts media based on the specified sorting method.
-     *
+     * Sort media by specified method
      * @async
-     * @param {string} sortMethod - Sorting criteria ("popularity", "date", "title").
-     * @returns {Promise<Array>} Resolves with a sorted array of media objects.
+     * @param {string} sortMethod - Sorting criteria
+     * @returns {Promise<Array>} Sorted media array
      */
     async getMedias(sortMethod) {
         const data = await this.getData();
@@ -72,11 +56,10 @@ class Model {
     }
 
     /**
-     * Retrieves the profile header details of a specific photographer.
-     *
+     * Retrieve photographer details
      * @async
-     * @param {number|string} [photographerId] - The ID of the photographer. Returns all photographers if empty
-     * @returns {Promise<Object>} Resolves with the photographer's profile data.
+     * @param {number} [photographerId] - Photographer's ID
+     * @returns {Promise<Object>} Photographer profile data
      */
     async getPhotographerDetails(photographerId) {
         const data = await this.getPhotographers();
@@ -97,12 +80,11 @@ class Model {
     }
 
     /**
-     * Retrieves the media content for a specific photographer based on sorting criteria.
-     *
+     * Get media for specific photographer
      * @async
-     * @param {number|string} photographerId - The ID of the photographer.
-     * @param {string} sortMethod - The sorting method to be applied.
-     * @returns {Promise<Array>} Resolves with an array of media objects belonging to the photographer.
+     * @param {number} photographerId - Photographer's ID
+     * @param {string} sortMethod - Sorting method
+     * @returns {Promise<Array>} Photographer's media
      */
     async getPhotographerProfileContent(photographerId, sortMethod) {
         const data = await this.getMedias(sortMethod);

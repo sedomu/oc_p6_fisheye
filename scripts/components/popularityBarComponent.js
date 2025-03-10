@@ -1,66 +1,50 @@
 /**
- * Class representing the popularity bar component that displays photographer's likes and price
+ * Manages the popularity bar, displaying photographer's likes and price.
+ *
+ * @class PopularityBar
  */
 class PopularityBar {
     /**
-     * Create a popularity bar
-     * @param {number} photographerId - The ID of the photographer
+     * Initializes the popularity bar with the photographer's ID.
+     * Sets up event listeners for like buttons and keyboard controls.
+     *
+     * @param {number} photographerId - The ID of the photographer.
      */
     constructor(photographerId) {
         this.photographerId = photographerId;
         this.deltaLikes = 0;
-
         this.keyboardControls = this.keyboardControls.bind(this);
 
-        // Keyboard navigation (photographer's page)
-        // document.removeEventListener("keyup", this.keyboardControls);
         document.addEventListener("keyup", this.keyboardControls);
-
-        const likeButtons = document.querySelectorAll(".media-card__like-counter");
-
-        console.log("launching updateLikes from component")
-
         document.addEventListener("click", (e) => {
             if (e.target.classList.contains("media-card__like-counter")) {
                 this.updateLikes(e);
             }
-        })
-        //     for (let i = 0; i < likeButtons.length; i++) {
-        //         likeButtons[i].addEventListener("click", (e) => {
-        //             this.updateLikes(e);
-        //
-        //
-        //
-        //
-        // })}
-
+        });
     }
 
+    /**
+     * Handles keyboard events (Enter/Space) to toggle media likes.
+     *
+     * @param {KeyboardEvent} e - The keyboard event.
+     * @returns {void}
+     */
     keyboardControls(e) {
-        if (
-            (e.target.className === "media-card__like-counter" && e.key === "Enter") ||
-            (e.target.className === "media-card__like-counter" && e.key === " ")
-        ) {
-            console.log("ICI MON DERNIER J'ESPERE DEBUG")
-            console.log("Je viens de Entrée ou Space")
-            console.log(e.target)
-            this.updateLikes(e)
-            // e.target.click();
+        if ((e.target.className === "media-card__like-counter") && (e.key === "Enter" || e.key === " ")) {
+            this.updateLikes(e);
         }
     }
 
     /**
-     * Sets up event listeners for like buttons and updates the popularity bar
-     * when likes are added or removed
-     * For development purposes only as the API will handle this
+     * Updates the like count on a media card and adjusts the popularity bar.
+     *
+     * @param {Event} e - The click event.
+     * @returns {void}
      */
     updateLikes(e) {
-
         const updatedAttribute = e.target.attributes.getNamedItem("updated");
-        const testConst = e.target;
 
         if (updatedAttribute.value === "true") {
-            console.log(e.target, " versus ", testConst)
             e.target.setAttribute("updated", "false");
             e.target.innerText = parseInt(e.target.innerText) - 1;
             this.displayPopularityBar(-1);
@@ -71,12 +55,10 @@ class PopularityBar {
         }
     }
 
-
     /**
-     * Fetches photographer's price and total likes from the data model
-     * @returns {Promise<Object>} Object containing price and total likes
-     * @property {number} price - Photographer's daily rate
-     * @property {number} likes - Total number of likes across all media
+     * Fetches photographer's price and total likes from the model.
+     *
+     * @returns {Promise<Object>} - An object containing price and total likes.
      */
     async getPopularityData() {
         const model = new Model();
@@ -95,9 +77,10 @@ class PopularityBar {
     }
 
     /**
-     * Updates and renders the popularity bar in the DOM
-     * From json data at first load, then from updateLikes method with delta parameter
-     * @param {number} delta - The change in likes (+1 or -1)
+     * Updates and displays the popularity bar with the current total likes and price.
+     *
+     * @param {number} delta - The change in likes (+1 or -1).
+     * @returns {void}
      */
     async displayPopularityBar(delta) {
         const popularityBar = document.querySelector(".popularity-bar");
@@ -113,7 +96,7 @@ class PopularityBar {
         popularityBar.innerHTML = `
             <div class="popularity-bar__likes">
                 <p>${totalLikes}</p>
-                <img src="./assets/icons/heart_full_black.svg" alt="Icône coeur plein">
+                <img src="./assets/icons/heart_full_black.svg" alt="Heart icon">
             </div>
             <div class="popularity-bar__pricing">
                 <p>${price}€/jour</p>
