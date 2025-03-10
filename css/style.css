@@ -2,7 +2,7 @@
 @import url("photographer.css");
 
 /* ############### Variables ##################### */
-:root{
+:root {
     --red-darker: #901C1C;
     --red-lighter: #D3573C;
     --black-point: #000000;
@@ -103,7 +103,7 @@ a.home-link {
     gap: 20px;
 }
 
-.photographer_section div.artistDetails p{
+.photographer_section div.artistDetails p {
     text-align: center;
     margin: 0;
 }
