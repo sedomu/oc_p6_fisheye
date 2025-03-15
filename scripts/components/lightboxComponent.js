@@ -121,6 +121,7 @@ class Lightbox {
         }
         media.src = this.medias[this.currentItem].src;
         media.title = this.medias[this.currentItem].title;
+        media.alt = this.medias[this.currentItem].title;
 
         this.displayOpenMedia(media);
     }

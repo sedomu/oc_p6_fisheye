@@ -102,11 +102,14 @@ main {
 /* ################# SORT COMPONENT ################### */
 .component-block {
     height: 70px;
+    display: flex;
+    align-items: center;
 }
 
 .component-visual {
     position: absolute;
     height: 70px;
+    margin-left: 100px;
     margin-bottom: 0;
     border: none;
     overflow: hidden;
@@ -117,6 +120,7 @@ main {
 
 .component-visual:hover,
 .component-visual.hovered {
+    align-self: flex-start;
     height: 171px;
 }
 
