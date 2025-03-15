@@ -27,7 +27,7 @@ test JetBrains WebStorm
    - [index.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fsedomu.github.io%2FFront-End-Fisheye%2F)
    - [photographer.html](https://validator.w3.org/nu/?doc=https%3A%2F%2Fsedomu.github.io%2FFront-End-Fisheye%2Fphotographer.html%3Fid%3D243)
 2. W3C (css) :
-   - <a href="https://jigsaw.w3.org/css-validator/check/referer"><img style="border:0;width:88px;height:31px" src="https://jigsaw.w3.org/css-validator/images/vcss" alt="CSS Valide !"></a> 
+   - <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fsedomu.github.io%2FFront-End-Fisheye%2Fphotographer.html%3Fid%3D243&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=fr"><img style="border:0;width:88px;height:31px" src="https://jigsaw.w3.org/css-validator/images/vcss" alt="CSS Valide !"></a> 
 3. InclusiveDesign.ca ([AChecker](https://achecks.org/achecker/)) :
    - Accueil : <a target="_blank" href="https://achecks.org/achecker#wcag2aa,https://sedomu.github.io/Front-End-Fisheye/"><img src="https://achecks.org/images/icon_W2_aa.jpg" alt="AChecker accessibility checker compliance: WCAG 2.0 (Level AA)" height="32" width="102" /></a>
    - Détails photographe: <a target="_blank" href="https://achecks.org/achecker#wcag2aa,https://sedomu.github.io/Front-End-Fisheye/photographer.html?id=243"><img src="https://achecks.org/images/icon_W2_aa.jpg" alt="AChecker accessibility checker compliance: WCAG 2.0 (Level AA)" height="32" width="102" /></a>
