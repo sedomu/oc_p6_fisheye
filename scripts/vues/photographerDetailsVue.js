@@ -33,10 +33,10 @@ class photographerDetails {
                 <p class="location">${city}, ${country}</p>
                 <p class="tagline">${tagline}</p>
             </div>
-            <div class="contact_photographer"><button class="contact-button">Contactez-moi</button></div>
+            <div class="contact_photographer"><button class="contact-button" aria-description="Contact Me">Contactez-moi</button></div>
             <div class="photographer__profilePic">
                 <div class="photographer__profilePic--frame">
-                    <img src="${profileImg}" alt="Portrait de ${name}">
+                    <img src="${profileImg}" alt="${name}">
                 </div>
             </div>
         `;
@@ -79,7 +79,7 @@ class photographerDetails {
             <div class="media-card__media">${media.mediaHtmlCode}</div>
             <div class="media-card__txt">
                 <p>${media.title}</p>
-                <p class="media-card__like-counter" updated="false" tabindex="0">${media.likes}</p>
+                <p class="media-card__like-counter" updated="false" tabindex="0" aria-label="likes">${media.likes}</p>
             </div>`;
         photographerPortfolio.appendChild(article);
     }

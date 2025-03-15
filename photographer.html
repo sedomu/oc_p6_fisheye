@@ -26,19 +26,19 @@
 </header>
 <main id="main">
     <div class="photograph-header">
-        <!--        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>-->
     </div>
     <div class="sort-bar" aria-description="Sélectionner un filtre de tri">
         <div class="component-block" aria-description="Sélectionner un filtre de tri">
+            <label for="sorter">Trier par </label>
             <div aria-description="Sélectionner un filtre de tri" class="component-visual"
-                 role="menubar" tabindex="0">
-                <button class="sorter-component-button first-option" role="menuitem" tabindex="-1" value="popularity">
+                 role="button" tabindex="0" id="sorter" aria-labelledby="sorter" aria-haspopup="listbox" aria-expanded="false">
+                <button class="sorter-component-button first-option" role="listbox" tabindex="-1" value="popularity" aria-activedescendant="sorter" aria-selected="false" aria-labelledby="sorter">
                     Popularité
                 </button>
                 <div class="separator"></div>
-                <button class="sorter-component-button" role="menuitem" tabindex="-1" value="date">Date</button>
+                <button class="sorter-component-button" role="listbox" tabindex="-1" value="date" aria-activedescendant="sorter" aria-selected="false" aria-labelledby="sorter">Date</button>
                 <div class="separator"></div>
-                <button class="sorter-component-button" role="menuitem" tabindex="-1" value="title">Titre</button>
+                <button class="sorter-component-button" role="listbox" tabindex="-1" value="title" aria-activedescendant="sorter" aria-selected="false" aria-labelledby="sorter">Titre</button>
             </div>
         </div>
     </div>
@@ -46,38 +46,38 @@
     <div class="popularity-bar"></div>
 </main>
 <div class="contact-bg">
-    <div aria-describedby="contactModalTitle" aria-hidden="true" class="contact-modal" role="dialog" tabindex="-1">
+    <div aria-describedby="contactModalTitle" aria-labelledby="contactModalTitle" aria-hidden="true" class="contact-modal" role="dialog" tabindex="-1">
         <header>
-            <h2 id="contactModalTitle">Contactez-moi</h2>
-            <img alt="close" class="contact-modal__close" src="assets/icons/close_white.svg" tabindex="0">
+            <h1 id="contactModalTitle">Contactez-moi</h1>
+            <img alt="close" class="contact-modal__close" src="assets/icons/close_white.svg" tabindex="0" aria-label="Close contact form">
         </header>
         <form>
             <div>
                 <label for="firstname">Prénom</label>
-                <input id="firstname" type="text">
+                <input id="firstname" type="text" aria-labelledby="firstname">
                 <label for="lastname">Nom</label>
-                <input id="lastname" type="text">
+                <input id="lastname" type="text" aria-labelledby="lastname">
                 <label for="email">Email*</label>
-                <input id="email" required type="email">
+                <input id="email" required type="email" aria-labelledby="email">
                 <span></span>
                 <label for="message">Votre message*</label>
-                <textarea id="message" required></textarea>
+                <textarea id="message" aria-labelledby="message" required></textarea>
                 <span></span>
             </div>
-            <button class="contact_button" disabled>Envoyer</button>
+            <button class="contact_button" aria-label="Send">Envoyer</button>
             <span></span>
         </form>
     </div>
 </div>
 <div class="lightbox-bg" tabindex="-1">
-    <div aria-hidden="true" class="lightbox-modal" role="dialog">
-        <div class="lightbox-modal__close" tabindex="1"><img src="./assets/icons/close_red.svg" alt="Fermer la modale"></div>
+    <div aria-hidden="true" class="lightbox-modal" role="dialog" aria-label="image closeup view">
+        <div class="lightbox-modal__close" tabindex="1" aria-label="Close dialog"><img src="./assets/icons/close_red.svg" alt="Fermer la modale"></div>
         <div class="lightbox-modal__display">
-            <div class="lightbox-modal__control lightbox-modal__previous"><img src="./assets/icons/arrow_left.svg" alt="Afficher le média précédent">
+            <div class="lightbox-modal__control lightbox-modal__previous" aria-label="Previous image"><img src="./assets/icons/arrow_left.svg" alt="Afficher le média précédent">
             </div>
             <div class="lightbox-modal__viewer"><span>This is a placeholder to insert media to be read. This message shouldn't be displayed.</span>
             </div>
-            <div class="lightbox-modal__control lightbox-modal__next"><img src="./assets/icons/arrow_right.svg" alt="Afficher le média suivant"></div>
+            <div class="lightbox-modal__control lightbox-modal__next" aria-label="Next image"><img src="./assets/icons/arrow_right.svg" alt="Afficher le média suivant"></div>
         </div>
         <div class="lightbox-modal__title">Arc-en-ciel</div>
     </div>

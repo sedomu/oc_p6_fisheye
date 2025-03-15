@@ -35,7 +35,7 @@ class listPhotographersVue {
         const artistCardHtml = `
             <div class="artistHero">
                 <a href="${urlAttribute}">
-                    <img src="${pictureSrc}" alt="Portrait de ${photographer.name}">
+                    <img src="${pictureSrc}" alt="">
                     <h2 class="name">${photographer.name}</h2>
                 </a>
             </div>
