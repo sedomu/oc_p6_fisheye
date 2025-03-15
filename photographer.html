@@ -29,16 +29,16 @@
     </div>
     <div class="sort-bar" aria-description="Sélectionner un filtre de tri">
         <div class="component-block" aria-description="Sélectionner un filtre de tri">
-            <label for="sorter">Trier par </label>
-            <div aria-description="Sélectionner un filtre de tri" class="component-visual"
-                 role="button" tabindex="0" id="sorter" aria-labelledby="sorter" aria-haspopup="listbox" aria-expanded="false">
-                <button class="sorter-component-button first-option" role="listbox" tabindex="-1" value="popularity" aria-activedescendant="sorter" aria-selected="false" aria-labelledby="sorter">
+            <label aria-description="Sort by">Trier par </label>
+            <div role="listbox" aria-description="Sélectionner un filtre de tri" class="component-visual"
+                 tabindex="0" id="sorter" aria-labelledby="sorter" aria-haspopup="listbox" aria-expanded="false">
+                <button class="sorter-component-button first-option" tabindex="-1" value="popularity" aria-labelledby="sorter">
                     Popularité
                 </button>
                 <div class="separator"></div>
-                <button class="sorter-component-button" role="listbox" tabindex="-1" value="date" aria-activedescendant="sorter" aria-selected="false" aria-labelledby="sorter">Date</button>
+                <button class="sorter-component-button" tabindex="-1" value="date" aria-labelledby="sorter">Date</button>
                 <div class="separator"></div>
-                <button class="sorter-component-button" role="listbox" tabindex="-1" value="title" aria-activedescendant="sorter" aria-selected="false" aria-labelledby="sorter">Titre</button>
+                <button class="sorter-component-button" tabindex="-1" value="title" aria-labelledby="sorter">Titre</button>
             </div>
         </div>
     </div>
@@ -71,13 +71,13 @@
 </div>
 <div class="lightbox-bg" tabindex="-1">
     <div aria-hidden="true" class="lightbox-modal" role="dialog" aria-label="image closeup view">
-        <div class="lightbox-modal__close" tabindex="1" aria-label="Close dialog"><img src="./assets/icons/close_red.svg" alt="Fermer la modale"></div>
+        <div class="lightbox-modal__close" tabindex="1" aria-description="Close dialog"><img src="./assets/icons/close_red.svg" alt="Fermer la modale"></div>
         <div class="lightbox-modal__display">
-            <div class="lightbox-modal__control lightbox-modal__previous" aria-label="Previous image"><img src="./assets/icons/arrow_left.svg" alt="Afficher le média précédent">
+            <div class="lightbox-modal__control lightbox-modal__previous" aria-description="Previous image"><img src="./assets/icons/arrow_left.svg" alt="Afficher le média précédent">
             </div>
             <div class="lightbox-modal__viewer"><span>This is a placeholder to insert media to be read. This message shouldn't be displayed.</span>
             </div>
-            <div class="lightbox-modal__control lightbox-modal__next" aria-label="Next image"><img src="./assets/icons/arrow_right.svg" alt="Afficher le média suivant"></div>
+            <div class="lightbox-modal__control lightbox-modal__next" aria-description="Next image"><img src="./assets/icons/arrow_right.svg" alt="Afficher le média suivant"></div>
         </div>
         <div class="lightbox-modal__title">Arc-en-ciel</div>
     </div>
