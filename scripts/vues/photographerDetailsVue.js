@@ -16,7 +16,7 @@ class photographerDetails {
         this.medias = medias;
 
         document.title = "Fisheye - " + this.photographer.name;
-        document.querySelector(".contact-modal > header > h2").innerHTML = `Contactez-moi <br>${this.photographer.name}`;
+        document.querySelector(".contact-modal > header > h1").innerHTML = `Contactez-moi <br>${this.photographer.name}`;
     }
 
     /**
